@@ -6,49 +6,21 @@
 <title>人生RPG</title>
 <style>
   :root{
-    --bg-1:#faf6f0;
-    --bg-2:#f3ece0;
-    --bg-3:#ebe0cf;
-    --card:#ffffff;
-    --card-2:#fdfbf7;
-    --card-3:#f8f4ec;
-    --amber-50:#fffbeb;
-    --amber-100:#fef3c7;
-    --amber-200:#fde68a;
-    --amber-300:#fcd34d;
-    --amber-400:#fbbf24;
-    --amber-500:#f59e0b;
-    --amber-600:#d97706;
-    --amber-700:#b45309;
-    --amber-800:#92400e;
-    --rose-50:#fff1f2;
-    --rose-400:#fb7185;
-    --rose-500:#f43f5e;
-    --rose-700:#be123c;
-    --ink-900:#1c1917;
-    --ink-700:#44403c;
-    --ink-600:#57534e;
-    --ink-500:#78716c;
-    --ink-400:#a8a29e;
-    --ink-300:#d6d3d1;
-    --line-1:#ebe4d8;
-    --line-2:#f1ebdf;
-    --green:#059669;
-    --green-2:#10b981;
-    --green-bg:#ecfdf5;
-    --red:#dc2626;
-    --red-bg:#fef2f2;
-    --blue-bg:#eff6ff;
+    --bg-1:#faf6f0; --bg-2:#f3ece0; --bg-3:#ebe0cf;
+    --card:#ffffff; --card-2:#fdfbf7; --card-3:#f8f4ec;
+    --amber-50:#fffbeb; --amber-100:#fef3c7; --amber-200:#fde68a; --amber-300:#fcd34d;
+    --amber-400:#fbbf24; --amber-500:#f59e0b; --amber-600:#d97706; --amber-700:#b45309; --amber-800:#92400e;
+    --rose-50:#fff1f2; --rose-400:#fb7185; --rose-500:#f43f5e; --rose-700:#be123c;
+    --ink-900:#1c1917; --ink-700:#44403c; --ink-600:#57534e; --ink-500:#78716c; --ink-400:#a8a29e; --ink-300:#d6d3d1;
+    --line-1:#ebe4d8; --line-2:#f1ebdf;
+    --green:#059669; --green-2:#10b981; --green-bg:#ecfdf5;
+    --red:#dc2626; --red-bg:#fef2f2; --blue-bg:#eff6ff;
     --sh-xs:0 1px 2px rgba(120,80,40,.06);
     --sh-sm:0 1px 3px rgba(120,80,40,.06), 0 1px 2px rgba(120,80,40,.04);
     --sh:0 4px 14px -6px rgba(120,80,40,.12), 0 1px 2px rgba(120,80,40,.05);
     --sh-lg:0 20px 48px -18px rgba(120,80,40,.28);
     --sh-glow:0 0 0 3px rgba(217,119,6,.15);
-    --r-sm:10px;
-    --r:12px;
-    --r-md:16px;
-    --r-lg:20px;
-    --r-xl:24px;
+    --r-sm:10px; --r:12px; --r-md:16px; --r-lg:20px; --r-xl:24px;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -68,32 +40,13 @@
     mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-
-  /* 登录 */
-  #authScreen{
-    position:fixed; inset:0; z-index:200;
-    display:flex; align-items:center; justify-content:center; padding:20px;
-    background:
-      radial-gradient(900px 600px at 20% 10%, rgba(251,191,36,.16), transparent 60%),
-      radial-gradient(900px 600px at 80% 90%, rgba(244,114,182,.1), transparent 60%),
-      linear-gradient(180deg,#faf6f0,#ebe0cf);
-  }
-  .auth-card{
-    width:100%; max-width:400px;
-    background:linear-gradient(180deg,#ffffff,#fdfbf7);
-    border:1px solid var(--line-1);
-    border-radius:var(--r-xl);
-    padding:36px 30px 28px;
-    box-shadow:var(--sh-lg);
-  }
+  #authScreen{position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:20px;
+    background:radial-gradient(900px 600px at 20% 10%, rgba(251,191,36,.16), transparent 60%),
+    radial-gradient(900px 600px at 80% 90%, rgba(244,114,182,.1), transparent 60%),
+    linear-gradient(180deg,#faf6f0,#ebe0cf);}
+  .auth-card{width:100%; max-width:400px; background:linear-gradient(180deg,#ffffff,#fdfbf7); border:1px solid var(--line-1); border-radius:var(--r-xl); padding:36px 30px 28px; box-shadow:var(--sh-lg);}
   .auth-logo{display:flex; align-items:center; gap:12px; margin-bottom:28px; justify-content:center}
-  .auth-logo .icon{
-    width:48px; height:48px; border-radius:14px;
-    background:linear-gradient(135deg,#fbbf24 0%,#d97706 100%);
-    display:flex; align-items:center; justify-content:center;
-    font-size:24px;
-    box-shadow:0 8px 20px -8px rgba(217,119,6,.6), inset 0 1px 0 rgba(255,255,255,.4);
-  }
+  .auth-logo .icon{width:48px; height:48px; border-radius:14px; background:linear-gradient(135deg,#fbbf24 0%,#d97706 100%); display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 8px 20px -8px rgba(217,119,6,.6), inset 0 1px 0 rgba(255,255,255,.4);}
   .auth-logo .txt{font-size:21px; font-weight:800; color:var(--ink-900)}
   .auth-logo .txt em{font-style:normal; background:linear-gradient(135deg,#d97706,#b45309); -webkit-background-clip:text; background-clip:text; color:transparent}
   .auth-tabs{display:flex; gap:4px; margin-bottom:22px; background:var(--card-3); padding:4px; border-radius:12px; border:1px solid var(--line-1)}
@@ -103,35 +56,17 @@
   .auth-field label{font-size:11px; font-weight:700; color:var(--ink-500); letter-spacing:.1em; text-transform:uppercase}
   .auth-field input{width:100%; font-size:14px; padding:11px 14px; border-radius:11px; border:1.5px solid var(--line-1); background:#fff; outline:none; transition:.18s; color:var(--ink-900)}
   .auth-field input:focus{border-color:var(--amber-500); box-shadow:var(--sh-glow)}
-  .auth-btn{
-    width:100%; padding:13px; margin-top:8px;
-    border:none; border-radius:12px; font-weight:800;
-    font-size:14px; color:#fff; cursor:pointer;
-    background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);
-    text-shadow:0 1px 1px rgba(120,60,0,.25);
-    box-shadow:0 6px 16px -6px rgba(217,119,6,.5), inset 0 1px 0 rgba(255,255,255,.25);
-    transition:.2s;
-  }
+  .auth-btn{width:100%; padding:13px; margin-top:8px; border:none; border-radius:12px; font-weight:800; font-size:14px; color:#fff; cursor:pointer; background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%); text-shadow:0 1px 1px rgba(120,60,0,.25); box-shadow:0 6px 16px -6px rgba(217,119,6,.5), inset 0 1px 0 rgba(255,255,255,.25); transition:.2s;}
   .auth-btn:hover{transform:translateY(-1px)}
   .auth-btn:disabled{opacity:.5; cursor:not-allowed; transform:none}
   .auth-msg{margin-top:14px; padding:11px 14px; border-radius:10px; font-size:12.5px; line-height:1.6; font-weight:500; display:none}
   .auth-msg.show{display:block}
-  .auth-msg.info{background:var(--blue-bg); color:#1e40af; border:1px solid #bfdbfe}
   .auth-msg.ok{background:var(--green-bg); color:#065f46; border:1px solid #a7f3d0}
   .auth-msg.err{background:var(--red-bg); color:#991b1b; border:1px solid #fecaca}
   .auth-hint{text-align:center; font-size:11px; color:var(--ink-400); margin-top:20px; line-height:1.7}
-
   #appScreen{display:none}
   #appScreen.show{display:block}
-
-  header{
-    padding:14px 26px; position:sticky; top:0; z-index:50;
-    display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;
-    background:rgba(250,246,240,.88);
-    backdrop-filter:saturate(180%) blur(20px);
-    -webkit-backdrop-filter:saturate(180%) blur(20px);
-    border-bottom:1px solid var(--line-1);
-  }
+  header{padding:14px 26px; position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; background:rgba(250,246,240,.88); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid var(--line-1);}
   .brand{display:flex; align-items:center; gap:11px}
   .avatar{width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg,#fbbf24 0%,#d97706 100%); display:flex; align-items:center; justify-content:center; font-size:21px; flex-shrink:0; box-shadow:0 6px 14px -5px rgba(217,119,6,.5), inset 0 1px 0 rgba(255,255,255,.4)}
   .brand-text{display:flex; flex-direction:column; gap:1px}
@@ -152,19 +87,10 @@
   .icon-btn:hover{transform:translateY(-1px)}
   .icon-btn.ghost{background:transparent; color:var(--ink-500); border:1.5px solid var(--line-1); box-shadow:none}
   .icon-btn.ghost:hover{background:var(--card-3); color:var(--ink-700); transform:none}
-
   main{max-width:1480px; margin:0 auto; padding:22px 26px 28px; display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:20px; position:relative; z-index:1; align-items:start}
   @media(max-width:1080px){main{grid-template-columns:1fr; gap:16px}}
-  @media(max-width:600px){
-    header{padding:12px 14px; gap:12px}
-    main{padding:14px 12px 24px; gap:14px}
-    .brand-name{font-size:15px}
-    .avatar{width:36px;height:36px;font-size:18px;border-radius:10px}
-    .xp-wrap{min-width:140px}
-    .panel{padding:16px}
-  }
+  @media(max-width:600px){header{padding:12px 14px; gap:12px} main{padding:14px 12px 24px; gap:14px} .brand-name{font-size:15px} .avatar{width:36px;height:36px;font-size:18px;border-radius:10px} .xp-wrap{min-width:140px} .panel{padding:16px}}
   .col{display:flex; flex-direction:column; gap:18px; min-width:0}
-
   .panel{background:linear-gradient(180deg,#ffffff 0%,#fdfbf7 100%); border:1px solid var(--line-1); border-radius:var(--r-lg); padding:20px 22px; box-shadow:var(--sh-sm); transition:box-shadow .3s; position:relative}
   .panel:hover{box-shadow:var(--sh)}
   .panel h2{font-size:11px; margin:0 0 16px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-500); display:flex; align-items:center; justify-content:space-between; gap:12px}
@@ -173,12 +99,7 @@
   .h2-text{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .h2-actions{display:flex; gap:6px; text-transform:none; letter-spacing:0; font-weight:600}
   .row{display:flex; gap:7px; flex-wrap:wrap}
-
-  input,select,button,textarea{
-    font-family:inherit; font-size:12.5px; border-radius:var(--r-sm);
-    border:1.5px solid var(--line-1); background:#fff;
-    color:var(--ink-900); padding:9px 12px; outline:none; transition:.18s;
-  }
+  input,select,button,textarea{font-family:inherit; font-size:12.5px; border-radius:var(--r-sm); border:1.5px solid var(--line-1); background:#fff; color:var(--ink-900); padding:9px 12px; outline:none; transition:.18s;}
   input::placeholder{color:var(--ink-400)}
   input:hover,select:hover{border-color:var(--ink-300)}
   input:focus,select:focus{border-color:var(--amber-500); box-shadow:var(--sh-glow)}
@@ -187,7 +108,6 @@
   button:hover{background:var(--card-3); border-color:var(--ink-300); color:var(--ink-900); transform:translateY(-1px)}
   button:active{transform:translateY(0) scale(.98)}
   button:disabled{opacity:.4; cursor:not-allowed; transform:none !important}
-
   .btn-primary{background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%); border:none; color:#fff; font-weight:800; text-shadow:0 1px 1px rgba(120,60,0,.2); box-shadow:0 4px 10px -3px rgba(217,119,6,.5), inset 0 1px 0 rgba(255,255,255,.25)}
   .btn-primary:hover{background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%)}
   .btn-gold{background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%); border:none; color:#78350f; font-weight:800; box-shadow:0 4px 10px -3px rgba(251,191,36,.55), inset 0 1px 0 rgba(255,255,255,.4)}
@@ -200,7 +120,6 @@
   .btn-danger:hover{background:var(--red-bg); border-color:rgba(220,38,38,.35); color:#b91c1c}
   .btn-sm{padding:4px 9px !important; font-size:11px !important; border-radius:7px !important}
   .btn-icon{padding:5px 8px !important; font-size:12px !important; line-height:1}
-
   .task{display:flex; align-items:center; gap:11px; padding:11px 13px; border-radius:var(--r); margin-bottom:6px; background:#fff; border:1.5px solid var(--line-2); transition:.2s; box-shadow:0 1px 2px rgba(120,80,40,.03)}
   .task:hover{border-color:var(--line-1); box-shadow:var(--sh-xs); transform:translateX(2px)}
   .task.done{opacity:.5; background:var(--card-3)}
@@ -214,7 +133,6 @@
   .check.on{background:linear-gradient(135deg,#f59e0b,#d97706); border-color:var(--amber-600); color:#fff; font-weight:900; box-shadow:0 2px 6px rgba(217,119,6,.35)}
   .edit-input{flex:1; min-width:70px; padding:6px 10px}
   .edit-num{width:60px; padding:6px 8px}
-
   .ck{background:#fff; border-radius:var(--r); margin-bottom:8px; border:1.5px solid var(--line-2); transition:.2s; overflow:hidden; box-shadow:0 1px 2px rgba(120,80,40,.03)}
   .ck:hover{border-color:var(--line-1); box-shadow:var(--sh-xs)}
   .ck-row{display:flex; align-items:center; gap:10px; padding:11px 13px}
@@ -222,9 +140,8 @@
   .ck-name:hover{color:var(--amber-700)}
   .ck-stats{font-size:10.5px; color:var(--ink-500); font-weight:700; white-space:nowrap; background:var(--card-3); padding:3px 9px; border-radius:999px; border:1px solid var(--line-1)}
   .ck-cal{padding:0 13px 13px; display:none; border-top:1px solid var(--line-2); background:var(--card-2)}
-  .ck-cal.show{display:block; animation:calOpen .25s ease}
+  .ck-cal.show{display:block}
   .ck-cal.pinned{display:block}
-  @keyframes calOpen{from{opacity:0; transform:translateY(-4px)}to{opacity:1; transform:translateY(0)}}
   .cal-head{display:flex; align-items:center; justify-content:space-between; padding:11px 0; font-size:12px; color:var(--ink-700); font-weight:800}
   .cal-head button{padding:3px 9px; font-size:11px; border-radius:7px}
   .cal-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:4px}
@@ -235,7 +152,6 @@
   .cal-day.today{outline:2px solid var(--rose-500); outline-offset:1.5px}
   .cal-day.empty{background:transparent; cursor:default; border-color:transparent}
   .cal-day.empty:hover{background:transparent; transform:none}
-
   .ms{background:#fff; border-radius:var(--r-md); padding:16px; margin-bottom:10px; border:1.5px solid var(--line-2); transition:.2s; box-shadow:0 1px 2px rgba(120,80,40,.03)}
   .ms:hover{border-color:var(--line-1); box-shadow:var(--sh-xs)}
   .ms-head{display:flex; justify-content:space-between; align-items:center; gap:9px; margin-bottom:12px; flex-wrap:wrap}
@@ -243,7 +159,7 @@
   .ms-title::before{content:'◆'; font-size:9px; color:var(--amber-500)}
   .ms-progress-big{font-size:10.5px; color:var(--amber-800); font-weight:800; background:var(--amber-50); padding:4px 11px; border-radius:999px; white-space:nowrap; border:1px solid rgba(217,119,6,.2)}
   .ms-bar{position:relative; height:10px; border-radius:999px; margin-bottom:16px; background:var(--card-3); border:1px solid var(--line-1)}
-  .ms-bar-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,#fbbf24 0%,#f59e0b 55%,#e11d48 100%); transition:width .35s cubic-bezier(.4,0,.2,1); box-shadow:0 0 8px rgba(251,146,60,.4)}
+  .ms-bar-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,#fbbf24 0%,#f59e0b 55%,#e11d48 100%); transition:width .35s; box-shadow:0 0 8px rgba(251,146,60,.4)}
   .ms-node-mark{position:absolute; top:-3px; width:2px; height:16px; background:var(--ink-400); border-radius:2px; transform:translateX(-1px); pointer-events:none; box-shadow:0 0 0 1px #fff}
   .ms-slider-wrap{display:flex; align-items:center; gap:12px; margin-bottom:12px}
   .ms-slider{-webkit-appearance:none; appearance:none; flex:1; height:6px; border-radius:999px; background:linear-gradient(90deg,#f59e0b var(--p,0%), var(--card-3) var(--p,0%)); outline:none; padding:0; border:none; cursor:pointer; min-width:70px}
@@ -258,31 +174,25 @@
   .ms-node-tag button{background:transparent; border:none; color:var(--red); padding:0 1px; font-size:12px; cursor:pointer; font-weight:900; opacity:.5; box-shadow:none}
   .ms-node-tag button:hover{opacity:1; background:transparent}
   .ms-node-tag.active{border-color:var(--amber-400); background:var(--amber-50); color:var(--amber-800)}
-
   .shop-item{display:flex; justify-content:space-between; align-items:center; padding:11px 13px; border-radius:var(--r); margin-bottom:6px; gap:9px; background:#fff; border:1.5px solid var(--line-2); transition:.2s; box-shadow:0 1px 2px rgba(120,80,40,.03)}
   .shop-item:hover{border-color:var(--line-1); transform:translateX(2px); box-shadow:var(--sh-xs)}
   .shop-item .lbl{font-size:12.5px; color:var(--ink-900); font-weight:600; display:flex; align-items:center; gap:8px}
-
   .chest{display:flex; justify-content:space-between; align-items:center; gap:11px; padding:12px 14px; border-radius:var(--r); margin-bottom:7px; background:#fff; border:1.5px solid var(--line-2); transition:.22s; box-shadow:0 1px 2px rgba(120,80,40,.03)}
   .chest:hover{border-color:var(--line-1)}
   .chest.ready{border-color:var(--amber-300); background:linear-gradient(180deg,var(--amber-50),#fefce8); box-shadow:0 6px 18px -8px rgba(251,191,36,.5)}
   .chest-icon{width:42px; height:42px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:24px; border-radius:11px; background:linear-gradient(135deg,#fef3c7,#fde68a); border:1px solid var(--amber-200)}
-  .chest.ready .chest-icon{background:linear-gradient(135deg,#fde68a,#fbbf24); border-color:var(--amber-300); animation:iconFloat 2.4s ease-in-out infinite}
-  @keyframes iconFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-3px) rotate(3deg)}}
+  .chest.ready .chest-icon{background:linear-gradient(135deg,#fde68a,#fbbf24); border-color:var(--amber-300)}
   .chest .info{flex:1; min-width:0}
   .chest .cname{font-size:12.5px; font-weight:800; margin-bottom:3px; color:var(--ink-900)}
   .chest .cond{font-size:10.5px; color:var(--ink-500); font-weight:600}
   .chest .rw{font-size:10.5px; color:var(--amber-800); margin-top:3px; font-weight:700}
-
   .surprise-row{display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:var(--r); margin-bottom:6px; background:#fff; border:1.5px solid var(--line-2); transition:.2s; box-shadow:0 1px 2px rgba(120,80,40,.03)}
   .surprise-row:hover{border-color:var(--line-1); transform:translateX(2px)}
   .surprise-row .sname{flex:1; font-size:12px; font-weight:600; color:var(--ink-900); min-width:0}
   .surprise-row .sw{font-size:10px; color:var(--rose-700); background:var(--rose-50); padding:3px 9px; border-radius:999px; font-weight:800; border:1px solid rgba(244,114,182,.25); white-space:nowrap}
   .surprise-row .sp{font-size:11px; color:var(--ink-500); min-width:48px; text-align:right; font-weight:700}
-  .last-surprise{margin-top:12px; padding:18px; border-radius:var(--r-md); background:linear-gradient(135deg,#fff7ed,#ffe4e6); border:2px dashed var(--amber-300); text-align:center; font-size:13.5px; line-height:1.6; animation:surpriseIn .5s cubic-bezier(.34,1.56,.64,1)}
-  @keyframes surpriseIn{from{opacity:0; transform:scale(.85) rotate(-2deg)}to{opacity:1; transform:scale(1) rotate(0)}}
+  .last-surprise{margin-top:12px; padding:18px; border-radius:var(--r-md); background:linear-gradient(135deg,#fff7ed,#ffe4e6); border:2px dashed var(--amber-300); text-align:center; font-size:13.5px; line-height:1.6}
   .last-surprise .lbl{font-size:10px; color:var(--ink-500); display:block; margin-bottom:6px; letter-spacing:.15em; font-weight:700; text-transform:uppercase}
-
   .log{max-height:280px; overflow:auto; font-size:12.5px; padding-right:6px}
   .log::-webkit-scrollbar{width:6px}
   .log::-webkit-scrollbar-thumb{background:var(--line-1); border-radius:3px}
@@ -295,16 +205,13 @@
   .folder-body.hidden{display:none}
   .log-item{padding:5px 0; border-bottom:1px dashed var(--line-2); color:var(--ink-600); line-height:1.55; font-size:11.5px}
   .log-item:last-child{border-bottom:none}
-
   .empty{color:var(--ink-400); font-size:12px; text-align:center; padding:20px 12px; font-weight:500}
-  .sub{font-size:11.5px; color:var(--ink-500); margin:9px 0 2px; font-weight:600}
-
+  .sub{font-size:11.5px; color:var(--ink-500); margin:9px 0 2px; font-weight:
+600}
   .footer{max-width:1480px; margin:0 auto; padding:0 26px 36px; display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; position:relative; z-index:1}
   @media(max-width:600px){.footer{padding:0 12px 24px}}
-
   .toast{position:fixed; left:50%; bottom:32px; transform:translateX(-50%) translateY(120px) scale(.9); background:linear-gradient(135deg,#fbbf24,#d97706); color:#fff; font-weight:800; padding:13px 26px; border-radius:999px; opacity:0; transition:.45s cubic-bezier(.34,1.4,.64,1); z-index:99; pointer-events:none; max-width:90vw; text-align:center; font-size:13px; text-shadow:0 1px 1px rgba(120,60,0,.25); box-shadow:0 20px 40px -10px rgba(217,119,6,.55), inset 0 1px 0 rgba(255,255,255,.25)}
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0) scale(1)}
-
   .modal{position:fixed; inset:0; z-index:100; padding:18px; background:rgba(28,25,23,.42); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center}
   .modal.show{display:flex; animation:fadeIn .25s}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -318,7 +225,6 @@
   .modal-body::-webkit-scrollbar{width:7px}
   .modal-body::-webkit-scrollbar-thumb{background:var(--line-1); border-radius:3px}
   .modal-footer{padding:13px 22px; border-top:1px solid var(--line-2); display:flex; gap:9px; justify-content:flex-end; background:var(--card-2)}
-
   .sum-greeting{text-align:center; padding:6px 0 22px; border-bottom:1px dashed var(--line-1); margin-bottom:22px}
   .sum-greeting .date{font-size:10.5px; color:var(--ink-400); letter-spacing:.2em; font-weight:800; text-transform:uppercase; margin-bottom:7px}
   .sum-greeting .hi{font-size:22px; font-weight:800; color:var(--ink-900)}
@@ -386,7 +292,7 @@
   .stat-field-label .ico.coin{background:linear-gradient(135deg,#fcd34d,#f59e0b)}
   .cloud-status{font-size:10.5px; color:var(--ink-500); display:flex; align-items:center; gap:5px; padding:5px 11px; border-radius:999px; background:var(--card-3); font-weight:700}
   .cloud-status .dot{width:7px; height:7px; border-radius:50%; background:var(--ink-400); flex-shrink:0}
-  .cloud-status.ok .dot{background:var(--green-2); box-shadow:0 0 6px rgba(16,185,129,.5)}
+  .cloud-status.ok .dot{background:var(--green-2)}
   .cloud-status.syncing .dot{background:var(--amber-500); animation:pulse 1s infinite}
   .cloud-status.err .dot{background:var(--red)}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -410,8 +316,7 @@
     </div>
     <div class="auth-field">
       <label>密码</label>
-      <input id="authPassword" type="password" placeholder="至少 6 位" autocomplete="current-password"
-             onkeydown="if(event.key==='Enter')submitAuth()">
+      <input id="authPassword" type="password" placeholder="至少 6 位" autocomplete="current-password" onkeydown="if(event.key==='Enter')submitAuth()">
     </div>
     <button id="authSubmit" class="auth-btn" onclick="submitAuth()">登录</button>
     <div id="authMsg" class="auth-msg"></div>
@@ -643,12 +548,9 @@ function defaultState(){
       { id: uid(), name: '每周大宝箱', conditionType: 'weekTasks', conditionValue: 15, rewardCoins: 200, rewardXP: 100 }
     ],
     chestClaims: {},
-    checkins: [
-      { id: uid(), name: '早起', xp: 5, coins: 2, records: {} }
-    ],
+    checkins: [ { id: uid(), name: '早起', xp: 5, coins: 2, records: {} } ],
     milestones: [
-      {
-        id: uid(), name: '示例：写一本小说', progress: 20,
+      { id: uid(), name: '示例：写一本小说', progress: 20,
         nodes: [
           { id: uid(), percent: 0, label: '开始构思' },
           { id: uid(), percent: 20, label: '完成大纲' },
@@ -688,21 +590,1263 @@ function normalizeState(s){
   if(!Array.isArray(merged.checkins)) merged.checkins = d.checkins;
   if(!Array.isArray(merged.milestones)) merged.milestones = d.milestones;
   if(!Array.isArray(merged.surprises)) merged.surprises = d.surprises;
-
   merged.tasks = merged.tasks.map(function(t){
     return { id: t.id || uid(), name: t.name || '任务', xp: Math.max(0, t.xp || 0), coins: Math.max(0, t.coins || 0), done: !!t.done };
   });
   merged.checkins = merged.checkins.map(function(c){
-    return {
-      id: c.id || uid(), name: c.name || '打卡',
-      xp: Math.max(0, c.xp === undefined ? 5 : c.xp),
-      coins: Math.max(0, c.coins === undefined ? 2 : c.coins),
-      records: c.records || {}
-    };
+    return { id: c.id || uid(), name: c.name || '打卡', xp: Math.max(0, c.xp === undefined ? 5 : c.xp), coins: Math.max(0, c.coins === undefined ? 2 : c.coins), records: c.records || {} };
   });
   merged.milestones = merged.milestones.map(function(m){
     var nm = { id: m.id || uid(), name: m.name || '里程碑', progress: 0, nodes: [] };
     if(Array.isArray(m.nodes) && m.nodes.length > 0){
       nm.progress = Math.max(0, Math.min(100, m.progress || 0));
       nm.nodes = m.nodes.map(function(n){
-        return { id: n.id || uid(), percent: Math.max(0, Math.min(100, n.percent || 0)), label: n.label || ((n.percent || 
+        return { id: n.id || uid(), percent: Math.max(0, Math.min(100, n.percent || 0)), label: n.label || ((n.percent || 0) + '%') };
+      });
+    }else if(Array.isArray(m.items) && m.items.length > 0){
+      var sum = 0;
+      m.items.forEach(function(it){ sum += (it.percent || 0); });
+      nm.progress = Math.round(sum / m.items.length);
+      nm.nodes = m.items.map(function(it){
+        return { id: it.id || uid(), percent: Math.max(0, Math.min(100, it.percent || 0)), label: it.name || '' };
+      });
+    }
+    var has0 = nm.nodes.some(function(n){ return n.percent === 0; });
+    var has100 = nm.nodes.some(function(n){ return n.percent === 100; });
+    if(!has0) nm.nodes.push({ id: uid(), percent: 0, label: '开始' });
+    if(!has100) nm.nodes.push({ id: uid(), percent: 100, label: '完成' });
+    nm.nodes.sort(function(a,b){ return a.percent - b.percent; });
+    return nm;
+  });
+  merged.surprises = merged.surprises.map(function(s){
+    return { id: s.id || uid(), name: s.name || '奖励', weight: Math.max(1, s.weight || 1), coins: Math.max(0, s.coins || 0), xp: Math.max(0, s.xp || 0) };
+  });
+  delete merged.skills;
+  if(!Array.isArray(merged.logs)) merged.logs = [];
+  merged.logs = merged.logs.map(function(l){
+    return typeof l === 'string' ? { date: todayStr(), time: '', text: l } : l;
+  });
+  return merged;
+}
+
+function loadLocal(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return null;
+    return normalizeState(JSON.parse(raw));
+  }catch(e){ return null; }
+}
+
+var state = defaultState();
+var currentUser = null;
+var authMode = 'signin';
+var undoStack = [];
+var editingTaskId = null;
+var editingCheckinId = null;
+var pinnedCalendars = new Set();
+var calendarView = { year: new Date().getFullYear(), month: new Date().getMonth() };
+var cloudPushTimer = null;
+var cloudSyncState = 'idle';
+
+function setCloudStatus(status, text){
+  cloudSyncState = status;
+  var el = document.getElementById('cloudStatus');
+  var t = document.getElementById('cloudText');
+  if(!el || !t) return;
+  el.className = 'cloud-status ' + status;
+  t.textContent = text || ({ idle: '已同步', syncing: '同步中...', ok: '已同步', err: '同步失败' })[status];
+}
+
+function save(){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
+  if(!currentUser) return;
+  clearTimeout(cloudPushTimer);
+  setCloudStatus('syncing');
+  cloudPushTimer = setTimeout(pushToCloud, 700);
+}
+
+async function pushToCloud(){
+  if(!currentUser) return;
+  try{
+    var { error } = await supabase.from('saves').upsert({
+      user_id: currentUser.id, data: state, updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id' });
+    if(error) throw error;
+    setCloudStatus('ok', '已同步');
+  }catch(e){
+    console.warn('云同步失败', e);
+    setCloudStatus('err', '同步失败');
+  }
+}
+
+async function pullFromCloud(){
+  if(!currentUser) return null;
+  try{
+    var { data, error } = await supabase.from('saves').select('data').eq('user_id', currentUser.id).maybeSingle();
+    if(error){ console.warn(error); return null; }
+    return data ? data.data : null;
+  }catch(e){
+    console.warn('云端读取失败', e);
+    return null;
+  }
+}
+
+function switchAuthMode(mode){
+  authMode = mode;
+  document.getElementById('tabSignin').classList.toggle('active', mode === 'signin');
+  document.getElementById('tabSignup').classList.toggle('active', mode === 'signup');
+  document.getElementById('authSubmit').textContent = mode === 'signin' ? '登录' : '注册';
+  document.getElementById('authPassword').autocomplete = mode === 'signin' ? 'current-password' : 'new-password';
+  hideAuthMsg();
+}
+function showAuthMsg(type, text){
+  var el = document.getElementById('authMsg');
+  el.className = 'auth-msg show ' + type;
+  el.innerHTML = text;
+}
+function hideAuthMsg(){
+  var el = document.getElementById('authMsg');
+  el.className = 'auth-msg';
+  el.innerHTML = '';
+}
+async function submitAuth(){
+  var email = document.getElementById('authEmail').value.trim();
+  var password = document.getElementById('authPassword').value;
+  if(!email){ showAuthMsg('err', '请输入邮箱'); return; }
+  if(!password || password.length < 6){ showAuthMsg('err', '密码至少 6 位'); return; }
+  var btn = document.getElementById('authSubmit');
+  btn.disabled = true;
+  var origText = btn.textContent;
+  btn.textContent = authMode === 'signin' ? '登录中...' : '注册中...';
+  hideAuthMsg();
+  try{
+    if(authMode === 'signup'){
+      var { data, error } = await supabase.auth.signUp({ email: email, password: password });
+      if(error) throw error;
+      if(data.user && !data.session){
+        showAuthMsg('ok', '✅ 注册成功！<br>我们已向 <b>' + escapeHtml(email) + '</b> 发送了一封验证邮件。<br>请去邮箱点击验证链接，然后回来登录。');
+        document.getElementById('authPassword').value = '';
+      }else if(data.session){
+        currentUser = data.user;
+        await afterLogin();
+      }
+    }else{
+      var { data, error } = await supabase.auth.signInWithPassword({ email: email, password: password });
+      if(error) throw error;
+      if(!data.user) throw new Error('登录失败');
+      currentUser = data.user;
+      await afterLogin();
+    }
+  }catch(e){
+    var msg = e.message || '操作失败';
+    if(msg.toLowerCase().indexOf('email not confirmed') >= 0){
+      showAuthMsg('err', '⚠️ 邮箱还未验证，请先去邮箱点击验证链接。');
+    }else if(msg.toLowerCase().indexOf('invalid login') >= 0){
+      showAuthMsg('err', '邮箱或密码不对，请检查。');
+    }else if(msg.toLowerCase().indexOf('already registered') >= 0){
+      showAuthMsg('err', '这个邮箱已经注册过了，请直接登录。');
+    }else{
+      showAuthMsg('err', escapeHtml(msg));
+    }
+  }finally{
+    btn.disabled = false;
+    btn.textContent = origText;
+  }
+}
+function showApp(){
+  document.getElementById('authScreen').style.display = 'none';
+  document.getElementById('appScreen').classList.add('show');
+}
+function showAuth(){
+  document.getElementById('authScreen').style.display = 'flex';
+  document.getElementById('appScreen').classList.remove('show');
+}
+async function afterLogin(){
+  showApp();
+  setCloudStatus('syncing', '同步中...');
+  var cloudData = await pullFromCloud();
+  if(cloudData){
+    state = normalizeState(cloudData);
+  }else{
+    var local = loadLocal();
+    state = local || defaultState();
+    await pushToCloud();
+  }
+  checkNewDay();
+  render();
+  setCloudStatus('ok', '已同步');
+}
+async function doSignOut(){
+  if(!confirm('退出登录？本设备会回到登录界面，数据已存在云端。')) return;
+  await supabase.auth.signOut();
+  currentUser = null;
+  showAuth();
+  hideAuthMsg();
+  document.getElementById('authPassword').value = '';
+}
+
+function pushUndo(){
+  undoStack.push(JSON.stringify(state));
+  if(undoStack.length > MAX_UNDO) undoStack.shift();
+}
+function undo(){
+  if(undoStack.length === 0){ toast('没有可撤回的操作'); return; }
+  state = JSON.parse(undoStack.pop());
+  editingTaskId = null; editingCheckinId = null;
+  save(); render();
+  toast('↩ 已撤回');
+}
+document.addEventListener('keydown', function(e){
+  if((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z') && !e.shiftKey){
+    var tag = (document.activeElement && document.activeElement.tagName) || '';
+    if(tag === 'INPUT' || tag === 'TEXTAREA') return;
+    e.preventDefault(); undo();
+  }
+});
+
+function log(text){
+  var now = new Date();
+  state.logs.unshift({
+    date: dateStr(now),
+    time: now.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }),
+    text: text
+  });
+  if(state.logs.length > 500) state.logs.length = 500;
+}
+function bumpDailyStat(key, delta){
+  var d = todayStr();
+  if(!state.dailyStats[d]) state.dailyStats[d] = { tasksDone: 0, xp: 0, checkins: 0 };
+  if(state.dailyStats[d][key] === undefined) state.dailyStats[d][key] = 0;
+  state.dailyStats[d][key] = Math.max(0, state.dailyStats[d][key] + delta);
+}
+function applyXP(amount){
+  state.xp += amount;
+  if(state.xp < 0) state.xp = 0;
+  var lv = 0;
+  while(state.xp >= XP_PER_LEVEL){ state.xp -= XP_PER_LEVEL; state.level++; lv++; }
+  return lv;
+}
+function doDailyReset(silent){
+  state.tasks.forEach(function(t){ t.done = false; });
+  state.lastReset = todayStr();
+  state.stats.todayDate = todayStr();
+  state.stats.todayTasksDone = 0;
+  state.stats.todayXP = 0;
+  state.stats.todayCheckins = 0;
+  var ws = getWeekStart();
+  if(ws !== state.stats.weekStart){ state.stats.weekStart = ws; state.stats.weekTasksDone = 0; }
+  if(!silent) log('🌅 新的一天，任务已重置');
+}
+function resetDay(){
+  pushUndo(); doDailyReset(false); save(); render();
+  toast('新的一天，开始吧！');
+}
+function checkNewDay(){
+  if(state.lastReset !== todayStr()){
+    doDailyReset(true);
+    log('🌅 新的一天，任务已自动重置');
+    save(); render();
+  }
+}
+
+function addTask(){
+  var nameEl = document.getElementById('taskName');
+  var xpEl = document.getElementById('taskXP');
+  var coinsEl = document.getElementById('taskCoins');
+  var name = nameEl.value.trim();
+  var xp = parseInt(xpEl.value) || 10;
+  var coins = parseInt(coinsEl.value) || 0;
+  if(!name){ toast('请输入任务名'); return; }
+  pushUndo();
+  state.tasks.push({ id: uid(), name: name, xp: xp, coins: coins, done: false });
+  log('➕ 添加任务：' + name);
+  nameEl.value = '';
+  save(); render();
+}
+function toggleTask(id){
+  var t = state.tasks.find(function(x){ return x.id === id; });
+  if(!t) return;
+  pushUndo();
+  if(!t.done){
+    t.done = true;
+    state.stats.todayTasksDone++;
+    state.stats.weekTasksDone++;
+    state.stats.todayXP += t.xp;
+    bumpDailyStat('tasksDone', 1);
+    bumpDailyStat('xp', t.xp);
+    var lv = applyXP(t.xp);
+    state.coins += t.coins;
+    log('✅ 完成：' + t.name + ' (+' + t.xp + ' XP, +' + t.coins + ' 金币)');
+    if(lv > 0) log('🎉 升级！Lv.' + state.level);
+    toast('✅ ' + t.name + ' +' + t.xp + ' XP +' + t.coins + ' 金币');
+  }else{
+    t.done = false;
+    state.stats.todayTasksDone = Math.max(0, state.stats.todayTasksDone - 1);
+    state.stats.weekTasksDone = Math.max(0, state.stats.weekTasksDone - 1);
+    state.stats.todayXP = Math.max(0, state.stats.todayXP - t.xp);
+    bumpDailyStat('tasksDone', -1);
+    bumpDailyStat('xp', -t.xp);
+    applyXP(-t.xp);
+    state.coins = Math.max(0, state.coins - t.coins);
+    log('↩ 取消完成：' + t.name);
+  }
+  save(); render();
+}
+function delTask(id){
+  var t = state.tasks.find(function(x){ return x.id === id; });
+  if(!t) return;
+  pushUndo();
+  state.tasks = state.tasks.filter(function(x){ return x.id !== id; });
+  log('🗑 删除任务：' + t.name);
+  save(); render();
+}
+function startEditTask(id){ editingTaskId = id; render(); }
+function cancelEditTask(){ editingTaskId = null; render(); }
+function saveEditTask(id){
+  var t = state.tasks.find(function(x){ return x.id === id; });
+  if(!t){ editingTaskId = null; render(); return; }
+  var nameEl = document.getElementById('et-name-' + id);
+  var xpEl = document.getElementById('et-xp-' + id);
+  var coinsEl = document.getElementById('et-coins-' + id);
+  var newName = (nameEl ? nameEl.value : '').trim();
+  if(!newName){ toast('任务名不能为空'); return; }
+  pushUndo();
+  t.name = newName;
+  t.xp = Math.max(0, parseInt(xpEl.value) || 0);
+  t.coins = Math.max(0, parseInt(coinsEl.value) || 0);
+  log('✏ 编辑任务：' + t.name);
+  editingTaskId = null;
+  save(); render();
+}
+
+function addCheckin(){
+  var nameEl = document.getElementById('checkinName');
+  var xpEl = document.getElementById('checkinXP');
+  var coinsEl = document.getElementById('checkinCoins');
+  var name = nameEl.value.trim();
+  var xp = parseInt(xpEl.value) || 0;
+  var coins = parseInt(coinsEl.value) || 0;
+  if(!name){ toast('请输入打卡名'); return; }
+  pushUndo();
+  state.checkins.push({ id: uid(), name: name, xp: xp, coins: coins, records: {} });
+  log('➕ 添加打卡：' + name);
+  nameEl.value = '';
+  save(); render();
+}
+function delCheckin(id){
+  var c = state.checkins.find(function(x){ return x.id === id; });
+  if(!c) return;
+  pushUndo();
+  state.checkins = state.checkins.filter(function(x){ return x.id !== id; });
+  pinnedCalendars.delete(id);
+  log('🗑 删除打卡：' + c.name);
+  save(); render();
+}
+function toggleCheckin(id, dateKey){
+  var c = state.checkins.find(function(x){ return x.id === id; });
+  if(!c) return;
+  pushUndo();
+  var wasChecked = !!c.records[dateKey];
+  if(wasChecked){
+    delete c.records[dateKey];
+    if(dateKey === todayStr()){
+      state.stats.todayCheckins = Math.max(0, state.stats.todayCheckins - 1);
+      bumpDailyStat('checkins', -1);
+      applyXP(-c.xp);
+      state.coins = Math.max(0, state.coins - c.coins);
+    }
+    log('↩ 取消打卡：' + c.name + ' · ' + dateKey);
+  }else{
+    c.records[dateKey] = true;
+    if(dateKey === todayStr()){
+      state.stats.todayCheckins++;
+      bumpDailyStat('checkins', 1);
+      var lv = applyXP(c.xp);
+      state.coins += c.coins;
+      log('📅 打卡：' + c.name + ' (+' + c.xp + ' XP, +' + c.coins + ' 金币)');
+      if(lv > 0) log('🎉 升级！Lv.' + state.level);
+      toast('📅 ' + c.name + ' +' + c.xp + ' XP +' + c.coins + ' 金币');
+    }else{
+      log('📅 补打卡：' + c.name + ' · ' + dateKey);
+    }
+  }
+  save(); render();
+}
+function countCheckin(c){ return Object.keys(c.records).length; }
+function streakCheckin(c){
+  var n = 0;
+  var d = new Date();
+  if(!c.records[dateStr(d)]) d.setDate(d.getDate() - 1);
+  while(true){
+    var key = dateStr(d);
+    if(c.records[key]){ n++; d.setDate(d.getDate() - 1); } else break;
+  }
+  return n;
+}
+function hoverCheckin(id){
+  var cal = document.getElementById('cal-' + id);
+  if(cal) cal.classList.add('show');
+}
+function unhoverCheckin(id){
+  var cal = document.getElementById('cal-' + id);
+  if(!cal) return;
+  if(!pinnedCalendars.has(id)) cal.classList.remove('show');
+}
+function pinCheckin(id){
+  var cal = document.getElementById('cal-' + id);
+  if(!cal) return;
+  if(pinnedCalendars.has(id)){
+    pinnedCalendars.delete(id);
+    cal.classList.remove('pinned'); cal.classList.remove('show');
+  }else{
+    pinnedCalendars.add(id);
+    cal.classList.add('pinned'); cal.classList.add('show');
+  }
+}
+function calShiftMonth(delta){
+  calendarView.month += delta;
+  if(calendarView.month < 0){ calendarView.month = 11; calendarView.year--; }
+  if(calendarView.month > 11){ calendarView.month = 0; calendarView.year++; }
+  render();
+}
+function startEditCheckin(id){ editingCheckinId = id; render(); }
+function cancelEditCheckin(){ editingCheckinId = null; render(); }
+function saveEditCheckin(id){
+  var c = state.checkins.find(function(x){ return x.id === id; });
+  if(!c){ editingCheckinId = null; render(); return; }
+  var nameEl = document.getElementById('ec-name-' + id);
+  var xpEl = document.getElementById('ec-xp-' + id);
+  var coinsEl = document.getElementById('ec-coins-' + id);
+  var newName = (nameEl ? nameEl.value : '').trim();
+  if(!newName){ toast('打卡名不能为空'); return; }
+  pushUndo();
+  c.name = newName;
+  c.xp = Math.max(0, parseInt(xpEl.value) || 0);
+  c.coins = Math.max(0, parseInt(coinsEl.value) || 0);
+  log('✏ 编辑打卡：' + c.name);
+  editingCheckinId = null;
+  save(); render();
+}
+
+function addMilestone(){
+  var el = document.getElementById('msName');
+  var name = el.value.trim();
+  if(!name) return toast('请输入里程碑名');
+  pushUndo();
+  state.milestones.push({
+    id: uid(), name: name, progress: 0,
+    nodes: [
+      { id: uid(), percent: 0, label: '开始' },
+      { id: uid(), percent: 100, label: '完成' }
+    ]
+  });
+  log('➕ 创建里程碑：' + name);
+  el.value = '';
+  save(); render();
+}
+function delMilestone(id){
+  var m = state.milestones.find(function(x){ return x.id === id; });
+  if(!m) return;
+  pushUndo();
+  state.milestones = state.milestones.filter(function(x){ return x.id !== id; });
+  log('🗑 删除里程碑：' + m.name);
+  save(); render();
+}
+function renameMs(id){
+  var m = state.milestones.find(function(x){ return x.id === id; });
+  if(!m) return;
+  var v = prompt('修改里程碑名称：', m.name);
+  if(v === null) return;
+  var nv = v.trim();
+  if(!nv) return;
+  pushUndo();
+  m.name = nv;
+  log('✏ 里程碑改名：' + nv);
+  save(); render();
+}
+function addMsNode(msId){
+  var m = state.milestones.find(function(x){ return x.id === msId; });
+  if(!m) return;
+  var pctEl = document.getElementById('ms-np-' + msId);
+  var lblEl = document.getElementById('ms-nl-' + msId);
+  if(!pctEl || !lblEl) return;
+  var pct = Math.max(0, Math.min(100, parseInt(pctEl.value) || 0));
+  var label = (lblEl.value || '').trim() || (pct + '%');
+  if(m.nodes.some(function(n){ return n.percent === pct; })){
+    if(!confirm(pct + '% 已存在，是否覆盖？')) return;
+    m.nodes = m.nodes.filter(function(n){ return n.percent !== pct; });
+  }
+  pushUndo();
+  m.nodes.push({ id: uid(), percent: pct, label: label });
+  m.nodes.sort(function(a,b){ return a.percent - b.percent; });
+  log('➕ 节点：' + pct + '% · ' + label);
+  pctEl.value = ''; lblEl.value = '';
+  save(); render();
+}
+function delMsNode(msId, nodeId){
+  var m = state.milestones.find(function(x){ return x.id === msId; });
+  if(!m) return;
+  pushUndo();
+  m.nodes = m.nodes.filter(function(x){ return x.id !== nodeId; });
+  save(); render();
+}
+function currentMsNode(m){
+  var sorted = m.nodes.slice().sort(function(a,b){ return a.percent - b.percent; });
+  var cur = null;
+  for(var i = 0; i < sorted.length; i++){
+    if(m.progress >= sorted[i].percent) cur = sorted[i];
+    else break;
+  }
+  return cur;
+}
+function updateMsProgress(msId, value){
+  var m = state.milestones.find(function(x){ return x.id === msId; });
+  if(!m) return;
+  m.progress = Math.max(0, Math.min(100, parseInt(value) || 0));
+  var wrap = document.querySelector('.ms[data-id="' + msId + '"]');
+  if(!wrap) return;
+  var cur = currentMsNode(m);
+  var big = wrap.querySelector('.ms-progress-big');
+  var pct = wrap.querySelector('.ms-pct-big');
+  var bar = wrap.querySelector('.ms-bar-fill');
+  var slider = wrap.querySelector('.ms-slider');
+  if(big) big.textContent = m.progress + '% · ' + (cur ? cur.label : '未开始');
+  if(pct) pct.textContent = m.progress + '%';
+  if(bar) bar.style.width = m.progress + '%';
+  if(slider) slider.style.setProperty('--p', m.progress + '%');
+  wrap.querySelectorAll('.ms-node-tag').forEach(function(el){
+    el.classList.toggle('active', cur && el.dataset.nodeid === cur.id);
+  });
+}
+function finishMsProgress(msId){
+  var m = state.milestones.find(function(x){ return x.id === msId; });
+  if(!m) return;
+  log('🎯 里程碑「' + m.name + '」 → ' + m.progress + '%');
+  save(); render();
+}
+
+function addReward(){
+  var nameEl = document.getElementById('rewardName');
+  var costEl = document.getElementById('rewardCost');
+  var name = nameEl.value.trim();
+  var cost = parseInt(costEl.value) || 50;
+  if(!name) return toast('请输入奖励名');
+  pushUndo();
+  state.rewards.push({ id: uid(), name: name, cost: cost });
+  log('➕ 奖励：' + name);
+  nameEl.value = '';
+  save(); render();
+}
+function buyReward(id){
+  var r = state.rewards.find(function(x){ return x.id === id; });
+  if(!r) return;
+  if(state.coins < r.cost) return toast('金币不够，再攒攒！');
+  pushUndo();
+  state.coins -= r.cost;
+  log('🛍 兑换：' + r.name + ' (-' + r.cost + ' 金币)');
+  save(); render();
+  toast('享受你的奖励：' + r.name);
+}
+function delReward(id){
+  var r = state.rewards.find(function(x){ return x.id === id; });
+  if(!r) return;
+  pushUndo();
+  state.rewards = state.rewards.filter(function(x){ return x.id !== id; });
+  log('🗑 删除奖励：' + r.name);
+  save(); render();
+}
+
+function chestConditionText(c){
+  switch(c.conditionType){
+    case 'todayTasks': return '今日任务 ≥ ' + c.conditionValue;
+    case 'todayXP': return '今日 XP ≥ ' + c.conditionValue;
+    case 'weekTasks': return '本周任务 ≥ ' + c.conditionValue;
+    case 'todayCheckins': return '今日打卡 ≥ ' + c.conditionValue;
+    case 'manual': return '手动开启';
+    default: return '';
+  }
+}
+function chestProgress(c){
+  var s = state.stats;
+  switch(c.conditionType){
+    case 'todayTasks': return s.todayTasksDone + '/' + c.conditionValue;
+    case 'todayXP': return s.todayXP + '/' + c.conditionValue;
+    case 'weekTasks': return s.weekTasksDone + '/' + c.conditionValue;
+    case 'todayCheckins': return s.todayCheckins + '/' + c.conditionValue;
+    case 'manual': return '随时';
+    default: return '';
+  }
+}
+function checkChest(c){
+  var s = state.stats;
+  switch(c.conditionType){
+    case 'todayTasks': return s.todayTasksDone >= c.conditionValue;
+    case 'todayXP': return s.todayXP >= c.conditionValue;
+    case 'weekTasks': return s.weekTasksDone >= c.conditionValue;
+    case 'todayCheckins': return s.todayCheckins >= c.conditionValue;
+    case 'manual': return true;
+    default: return false;
+  }
+}
+function chestRewardText(c){
+  var parts = [];
+  if(c.rewardCoins > 0) parts.push('🪙 ' + c.rewardCoins);
+  if(c.rewardXP > 0) parts.push(c.rewardXP + ' XP');
+  return parts.length ? parts.join(' · ') : '无奖励';
+}
+function addChest(){
+  var nameEl = document.getElementById('chestName');
+  var typeEl = document.getElementById('chestType');
+  var valEl = document.getElementById('chestValue');
+  var cEl = document.getElementById('chestCoins');
+  var xEl = document.getElementById('chestXP');
+  var name = nameEl.value.trim();
+  if(!name) return toast('请输入宝箱名');
+  var conditionType = typeEl.value;
+  var conditionValue = Math.max(1, parseInt(valEl.value) || 1);
+  var rewardCoins = Math.max(0, parseInt(cEl.value) || 0);
+  var rewardXP = Math.max(0, parseInt(xEl.value) || 0);
+  if(conditionType === 'manual' && rewardCoins === 0 && rewardXP === 0){
+    return toast('手动宝箱至少要有一种奖励');
+  }
+  pushUndo();
+  state.chests.push({ id: uid(), name: name, conditionType: conditionType, conditionValue: conditionValue, rewardCoins: rewardCoins, rewardXP: rewardXP });
+  log('➕ 宝箱：' + name);
+  nameEl.value = '';
+  save(); render();
+}
+function delChest(id){
+  var c = state.chests.find(function(x){ return x.id === id; });
+  if(!c) return;
+  pushUndo();
+  state.chests = state.chests.filter(function(x){ return x.id !== id; });
+  delete state.chestClaims[id];
+  log('🗑 删除宝箱：' + c.name);
+  save(); render();
+}
+function openChest(id){
+  var c = state.chests.find(function(x){ return x.id === id; });
+  if(!c) return;
+  if(state.chestClaims[c.id] === todayStr()) return toast('今天已经开过了');
+  if(!checkChest(c)) return toast('条件还没达成');
+  pushUndo();
+  state.chestClaims[c.id] = todayStr();
+  var parts = [];
+  if(c.rewardCoins > 0){ state.coins += c.rewardCoins; parts.push('+' + c.rewardCoins + ' 金币'); }
+  var lv = 0;
+  if(c.rewardXP > 0){ lv = applyXP(c.rewardXP); parts.push('+' + c.rewardXP + ' XP'); }
+  log('🎁 开启「' + c.name + '」：' + (parts.join('，') || '空'));
+  if(lv > 0) log('🎉 升级！Lv.' + state.level);
+  save(); render();
+  toast('🎁 ' + c.name + ' ' + parts.join('，'));
+}
+
+function surpriseProbabilities(){
+  var total = 0;
+  state.surprises.forEach(function(s){ total += Math.max(1, s.weight || 1); });
+  return state.surprises.map(function(s){
+    var w = Math.max(1, s.weight || 1);
+    return { id: s.id, name: s.name, weight: s.weight, coins: s.coins, xp: s.xp, prob: total > 0 ? (w / total * 100) : 0 };
+  });
+}
+function addSurprise(){
+  var nameEl = document.getElementById('spName');
+  var wEl = document.getElementById('spWeight');
+  var cEl = document.getElementById('spCoins');
+  var xEl = document.getElementById('spXP');
+  var name = nameEl.value.trim();
+  if(!name) return toast('请输入奖励名');
+  var weight = Math.max(1, parseInt(wEl.value) || 1);
+  var coins = Math.max(0, parseInt(cEl.value) || 0);
+  var xp = Math.max(0, parseInt(xEl.value) || 0);
+  pushUndo();
+  state.surprises.push({ id: uid(), name: name, weight: weight, coins: coins, xp: xp });
+  log('➕ 惊喜奖励：' + name);
+  nameEl.value = '';
+  save(); render();
+}
+function delSurprise(id){
+  var s = state.surprises.find(function(x){ return x.id === id; });
+  if(!s) return;
+  pushUndo();
+  state.surprises = state.surprises.filter(function(x){ return x.id !== id; });
+  log('🗑 删除惊喜奖励：' + s.name);
+  save(); render();
+}
+function editSurprise(id){
+  var s = state.surprises.find(function(x){ return x.id === id; });
+  if(!s) return;
+  var w = prompt('修改权重（越高越容易抽到）：', s.weight);
+  if(w === null) return;
+  var nw = Math.max(1, parseInt(w) || 1);
+  pushUndo();
+  s.weight = nw;
+  log('✏ 奖励「' + s.name + '」权重 → ' + nw);
+  save(); render();
+}
+function drawSurprise(){
+  if(state.surprises.length === 0) return toast('还没有惊喜奖励');
+  var total = 0;
+  state.surprises.forEach(function(s){ total += Math.max(1, s.weight || 1); });
+  var roll = Math.random() * total;
+  var picked = state.surprises[state.surprises.length - 1];
+  for(var i = 0; i < state.surprises.length; i++){
+    var s = state.surprises[i];
+    roll -= Math.max(1, s.weight || 1);
+    if(roll <= 0){ picked = s; break; }
+  }
+  pushUndo();
+  var parts = [];
+  if(picked.coins > 0){ state.coins += picked.coins; parts.push('🪙 +' + picked.coins); }
+  var lv = 0;
+  if(picked.xp > 0){ lv = applyXP(picked.xp); parts.push('+' + picked.xp + ' XP'); }
+  var rewardText = parts.join(' · ') || '（无金币/XP，但也是惊喜）';
+  state.lastSurprise = { name: picked.name, rewardText: rewardText, time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) };
+  log('🎊 惊喜宝箱抽中：「' + picked.name + '」 ' + rewardText);
+  if(lv > 0) log('🎉 升级！Lv.' + state.level);
+  save(); render();
+  toast('🎊 抽中：' + picked.name + '！');
+}
+
+function openStatEditor(){
+  document.getElementById('editLevel').value = state.level;
+  document.getElementById('editXP').value = state.xp;
+  document.getElementById('editCoins').value = state.coins;
+  document.getElementById('statModal').classList.add('show');
+}
+function closeStatEditor(){
+  document.getElementById('statModal').classList.remove('show');
+}
+function saveStatEditor(){
+  var newLevel = Math.max(1, parseInt(document.getElementById('editLevel').value) || 1);
+  var newXP = Math.max(0, parseInt(document.getElementById('editXP').value) || 0);
+  var newCoins = Math.max(0, parseInt(document.getElementById('editCoins').value) || 0);
+  pushUndo();
+  var oldLevel = state.level, oldXP = state.xp, oldCoins = state.coins;
+  state.level = newLevel;
+  state.xp = newXP;
+  state.coins = newCoins;
+  while(state.xp >= XP_PER_LEVEL){ state.xp -= XP_PER_LEVEL; state.level++; }
+  log('✎ 修改属性：Lv.' + oldLevel + '→' + state.level + '，XP ' + oldXP + '→' + state.xp + '，金币 ' + oldCoins + '→' + state.coins);
+  closeStatEditor();
+  save(); render();
+  toast('属性已更新');
+}
+
+function render(){
+  document.getElementById('levelBadge').textContent = 'Lv.' + state.level;
+  document.getElementById('xpText').textContent = state.xp + ' / ' + XP_PER_LEVEL;
+  document.getElementById('xpFill').style.width = ((state.xp / XP_PER_LEVEL) * 100) + '%';
+  document.getElementById('coinText').textContent = state.coins;
+  renderTasks();
+  renderCheckins();
+  renderMilestones();
+  renderRewards();
+  renderChests();
+  renderSurprises();
+  renderLogs();
+  save();
+}
+
+function renderTasks(){
+  var el = document.getElementById('taskList');
+  if(state.tasks.length === 0){
+    el.innerHTML = '<div class="empty">还没有任务</div>';
+  }else{
+    var html = '';
+    state.tasks.forEach(function(t){
+      if(editingTaskId === t.id){
+        html += '<div class="task" style="border-color:var(--amber-400);background:var(--amber-50)">';
+        html += '<input id="et-name-' + t.id + '" class="edit-input" value="' + escapeAttr(t.name) + '" onkeydown="if(event.key===\'Enter\'){event.preventDefault();saveEditTask(\'' + t.id + '\')}">';
+        html += '<input id="et-xp-' + t.id + '" class="edit-num" type="number" min="0" value="' + t.xp + '" title="XP">';
+        html += '<input id="et-coins-' + t.id + '" class="edit-num" type="number" min="0" value="' + t.coins + '" title="金币">';
+        html += '<button class="btn-primary btn-sm" onclick="saveEditTask(\'' + t.id + '\')">存</button>';
+        html += '<button class="btn-ghost btn-sm" onclick="cancelEditTask()">消</button>';
+        html += '</div>';
+      }else{
+        html += '<div class="task ' + (t.done ? 'done' : '') + '">';
+        html += '<div class="check ' + (t.done ? 'on' : '') + '" onclick="toggleTask(\'' + t.id + '\')">' + (t.done ? '✓' : '') + '</div>';
+        html += '<div class="name">' + escapeHtml(t.name) + '</div>';
+        html += '<span class="tag xp">+' + t.xp + ' XP</span>';
+        html += '<span class="tag coin">🪙 +' + t.coins + '</span>';
+        html += '<button class="btn-ghost btn-sm" onclick="startEditTask(\'' + t.id + '\')">编</button>';
+        html += '<button class="btn-danger btn-sm" onclick="delTask(\'' + t.id + '\')">删</button>';
+        html += '</div>';
+      }
+    });
+    el.innerHTML = html;
+  }
+  var doneCount = state.tasks.filter(function(t){ return t.done; }).length;
+  document.getElementById('taskSummary').textContent =
+    '今日 ' + doneCount + '/' + state.tasks.length + ' · 今日 XP ' + state.stats.todayXP + ' · 本周 ' + state.stats.weekTasksDone;
+}
+
+function renderCheckins(){
+  var el = document.getElementById('checkinList');
+  if(state.checkins.length === 0){
+    el.innerHTML = '<div class="empty">还没有打卡任务</div>';
+    return;
+  }
+  var today = todayStr();
+  var html = '';
+  state.checkins.forEach(function(c){
+    var total = countCheckin(c);
+    var st = streakCheckin(c);
+    var todayDone = !!c.records[today];
+    var pinned = pinnedCalendars.has(c.id);
+    if(editingCheckinId === c.id){
+      html += '<div class="ck" style="border-color:var(--amber-400);background:var(--amber-50)">';
+      html += '<div class="ck-row" style="flex-wrap:wrap">';
+      html += '<input id="ec-name-' + c.id + '" class="edit-input" value="' + escapeAttr(c.name) + '" onkeydown="if(event.key===\'Enter\'){event.preventDefault();saveEditCheckin(\'' + c.id + '\')}">';
+      html += '<input id="ec-xp-' + c.id + '" class="edit-num" type="number" min="0" value="' + c.xp + '" title="XP">';
+      html += '<input id="ec-coins-' + c.id + '" class="edit-num" type="number" min="0" value="' + c.coins + '" title="金币">';
+      html += '<button class="btn-primary btn-sm" onclick="saveEditCheckin(\'' + c.id + '\')">存</button>';
+      html += '<button class="btn-ghost btn-sm" onclick="cancelEditCheckin()">消</button>';
+      html += '</div></div>';
+    }else{
+      html += '<div class="ck">';
+      html += '<div class="ck-row">';
+      html += '<div class="check ' + (todayDone ? 'on' : '') + '" style="width:19px;height:19px;font-size:10px" onclick="toggleCheckin(\'' + c.id + '\',\'' + today + '\')">' + (todayDone ? '✓' : '') + '</div>';
+      html += '<div class="ck-name" onmouseenter="hoverCheckin(\'' + c.id + '\')" onmouseleave="unhoverCheckin(\'' + c.id + '\')">' + escapeHtml(c.name) + '</div>';
+      html += '<span class="tag xp">+' + c.xp + '</span>';
+      html += '<span class="tag coin">🪙+' + c.coins + '</span>';
+      html += '<span class="ck-stats">' + total + '天·连' + st + '</span>';
+      html += '<button class="btn-ghost btn-sm btn-icon ' + (pinned ? 'btn-primary' : '') + '" onclick="pinCheckin(\'' + c.id + '\')">📅</button>';
+      html += '<button class="btn-ghost btn-sm" onclick="startEditCheckin(\'' + c.id + '\')">编</button>';
+      html += '<button class="btn-danger btn-sm" onclick="delCheckin(\'' + c.id + '\')">删</button>';
+      html += '</div>';
+      html += '<div class="ck-cal ' + (pinned ? 'pinned show' : '') + '" id="cal-' + c.id + '" onmouseenter="hoverCheckin(\'' + c.id + '\')" onmouseleave="unhoverCheckin(\'' + c.id + '\')">' + buildCalendar(c) + '</div>';
+      html += '</div>';
+    }
+  });
+  el.innerHTML = html;
+}
+
+function buildCalendar(c){
+  var y = calendarView.year, m = calendarView.month;
+  var firstDay = new Date(y, m, 1).getDay();
+  var daysInMonth = new Date(y, m+1, 0).getDate();
+  var weekLabels = ['一','二','三','四','五','六','日'];
+  var html = '<div class="cal-head">';
+  html += '<button class="btn-ghost btn-sm" onclick="event.stopPropagation();calShiftMonth(-1)">◀</button>';
+  html += '<span>' + y + ' 年 ' + (m + 1) + ' 月</span>';
+  html += '<button class="btn-ghost btn-sm" onclick="event.stopPropagation();calShiftMonth(1)">▶</button>';
+  html += '</div><div class="cal-grid">';
+  weekLabels.forEach(function(w){ html += '<div class="cal-w">' + w + '</div>'; });
+  var startOffset = firstDay === 0 ? 6 : firstDay - 1;
+  for(var i = 0; i < startOffset; i++) html += '<div class="cal-day empty"></div>';
+  var todayKey = todayStr();
+  for(var d = 1; d <= daysInMonth; d++){
+    var ds = y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    var checked = c.records[ds];
+    var isToday = ds === todayKey;
+    var cls = 'cal-day';
+    if(checked) cls += ' checked';
+    if(isToday) cls += ' today';
+    html += '<div class="' + cls + '" onclick="event.stopPropagation();toggleCheckin(\'' + c.id + '\',\'' + ds + '\')">' + d + '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderMilestones(){
+  var el = document.getElementById('msList');
+  if(state.milestones.length === 0){
+    el.innerHTML = '<div class="empty">还没有里程碑</div>';
+    return;
+  }
+  var html = '';
+  state.milestones.forEach(function(m){
+    var sorted = m.nodes.slice().sort(function(a,b){ return a.percent - b.percent; });
+    var cur = currentMsNode(m);
+    var nodeTags = '';
+    sorted.forEach(function(n){
+      var active = cur && cur.id === n.id;
+      nodeTags += '<span class="ms-node-tag ' + (active ? 'active' : '') + '" data-nodeid="' + n.id + '">';
+      nodeTags += '<span class="pct">' + n.percent + '%</span>';
+      nodeTags += '<span>' + escapeHtml(n.label) + '</span>';
+      nodeTags += '<button onclick="event.stopPropagation();delMsNode(\'' + m.id + '\',\'' + n.id + '\')">×</button>';
+      nodeTags += '</span>';
+    });
+    var nodeMarks = '';
+    sorted.forEach(function(n){
+      nodeMarks += '<div class="ms-node-mark" style="left:' + n.percent + '%"></div>';
+    });
+    html += '<div class="ms" data-id="' + m.id + '">';
+    html += '<div class="ms-head">';
+    html += '<div class="ms-title">' + escapeHtml(m.name) + '</div>';
+    html += '<span class="ms-progress-big">' + m.progress + '% · ' + (cur ? escapeHtml(cur.label) : '未开始') + '</span>';
+    html += '<button class="btn-ghost btn-sm" onclick="renameMs(\'' + m.id + '\')">改名</button>';
+    html += '<button class="btn-danger btn-sm" onclick="delMilestone(\'' + m.id + '\')">删</button>';
+    html += '</div>';
+    html += '<div class="ms-bar">';
+    html += '<div class="ms-bar-fill" style="width:' + m.progress + '%"></div>';
+    html += nodeMarks;
+    html += '</div>';
+    html += '<div class="ms-slider-wrap">';
+    html += '<input class="ms-slider" type="range" min="0" max="100" value="' + m.progress + '" style="--p:' + m.progress + '%" oninput="updateMsProgress(\'' + m.id + '\', this.value)" onchange="finishMsProgress(\'' + m.id + '\')">';
+    html += '<span class="ms-pct-big">' + m.progress + '%</span>';
+    html += '</div>';
+    html += '<div class="ms-nodes">';
+    html += '<span class="ms-nodes-label">节点</span>';
+    html += nodeTags;
+    html += '</div>';
+    html += '<div style="display:flex;gap:6px;margin-top:11px;flex-wrap:wrap">';
+    html += '<input id="ms-np-' + m.id + '" type="number" min="0" max="100" placeholder="%" style="width:60px">';
+    html += '<input id="ms-nl-' + m.id + '" placeholder="节点名称" style="flex:1; min-width:100px" onkeydown="if(event.key===\'Enter\'){event.preventDefault();addMsNode(\'' + m.id + '\')}">';
+    html += '<button class="btn-ghost btn-sm" onclick="addMsNode(\'' + m.id + '\')">+ 节点</button>';
+    html += '</div>';
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+function renderRewards(){
+  var el = document.getElementById('rewardList');
+  if(state.rewards.length === 0){
+    el.innerHTML = '<div class="empty">还没有奖励</div>';
+    return;
+  }
+  var html = '';
+  state.rewards.forEach(function(r){
+    html += '<div class="shop-item">';
+    html += '<div class="lbl">🎁 ' + escapeHtml(r.name) + ' <span class="tag coin">🪙 ' + r.cost + '</span></div>';
+    html += '<div style="display:flex;gap:4px">';
+    html += '<button class="btn-pink btn-sm" onclick="buyReward(\'' + r.id + '\')">兑换</button>';
+    html += '<button class="btn-danger btn-sm" onclick="delReward(\'' + r.id + '\')">删</button>';
+    html += '</div>';
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+function renderChests(){
+  var el = document.getElementById('chestList');
+  if(state.chests.length === 0){
+    el.innerHTML = '<div class="empty">还没有宝箱</div>';
+    return;
+  }
+  var html = '';
+  state.chests.forEach(function(c){
+    var ready = checkChest(c);
+    var claimed = state.chestClaims[c.id] === todayStr();
+    var canOpen = ready && !claimed;
+    var btn;
+    if(claimed) btn = '<button class="btn-ghost btn-sm" disabled>已开</button>';
+    else if(canOpen) btn = '<button class="btn-gold btn-sm" onclick="openChest(\'' + c.id + '\')">开启</button>';
+    else btn = '<button class="btn-ghost btn-sm" disabled>未达成</button>';
+    html += '<div class="chest ' + (canOpen ? 'ready' : '') + '">';
+    html += '<div class="chest-icon">' + (canOpen ? '🎁' : '📦') + '</div>';
+    html += '<div class="info">';
+    html += '<div class="cname">' + escapeHtml(c.name) + '</div>';
+    html += '<div class="cond">' + chestConditionText(c) + ' · ' + chestProgress(c) + '</div>';
+    html += '<div class="rw">' + chestRewardText(c) + '</div>';
+    html += '</div>';
+    html += '<div style="display:flex;gap:4px;flex-shrink:0">';
+    html += btn;
+    html += '<button class="btn-danger btn-sm" onclick="delChest(\'' + c.id + '\')">删</button>';
+    html += '</div>';
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+function renderSurprises(){
+  var el = document.getElementById('surpriseList');
+  if(state.surprises.length === 0){
+    el.innerHTML = '<div class="empty">还没有惊喜奖励</div>';
+  }else{
+    var probs = surpriseProbabilities();
+    var html = '';
+    probs.forEach(function(s){
+      html += '<div class="surprise-row">';
+      html += '<div class="sname">' + escapeHtml(s.name) + '</div>';
+      html += '<span class="sw">' + s.weight + ' 点</span>';
+      html += '<span class="sp">' + s.prob.toFixed(1) + '%</span>';
+      html += '<button class="btn-ghost btn-sm" onclick="editSurprise(\'' + s.id + '\')">编</button>';
+      html += '<button class="btn-danger btn-sm" onclick="delSurprise(\'' + s.id + '\')">删</button>';
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }
+  var last = document.getElementById('lastSurprise');
+  if(state.lastSurprise){
+    last.innerHTML = '<div class="last-surprise">' +
+      '<span class="lbl">上次抽中 · ' + state.lastSurprise.time + '</span>' +
+      '<div style="font-size:16px;font-weight:800;color:#be185d">🎊 ' + escapeHtml(state.lastSurprise.name) + '</div>' +
+      '<div style="font-size:11.5px;color:var(--ink-600);margin-top:6px;font-weight:600">' + escapeHtml(state.lastSurprise.rewardText) + '</div>' +
+      '</div>';
+  }else{
+    last.innerHTML = '';
+  }
+}
+
+function renderLogs(){
+  var el = document.getElementById('log');
+  if(!state.logs || state.logs.length === 0){
+    el.innerHTML = '<div class="empty">暂无记录</div>';
+    return;
+  }
+  var groups = {};
+  state.logs.forEach(function(l){
+    var d = l.date || todayStr();
+    if(!groups[d]) groups[d] = [];
+    groups[d].push(l);
+  });
+  var dates = Object.keys(groups).sort().reverse();
+  var today = todayStr();
+  var html = '';
+  dates.forEach(function(d){
+    var isToday = (d === today);
+    var label = isToday ? ('今天 · ' + d) : d;
+    var items = '';
+    groups[d].forEach(function(l){
+      items += '<div class="log-item">' + (l.time ? '[' + l.time + '] ' : '') + escapeHtml(l.text) + '</div>';
+    });
+    html += '<div class="log-folder ' + (isToday ? 'open' : '') + '" data-date="' + d + '">';
+    html += '<div class="folder-head" onclick="toggleFolder(\'' + d + '\')">';
+    html += '<span class="tri">' + (isToday ? '▼' : '▶') + '</span>';
+    html += '<span>' + (isToday ? '📂' : '📁') + ' ' + label + ' · ' + groups[d].length + '</span>';
+    html += '</div>';
+    html += '<div class="folder-body ' + (isToday ? '' : 'hidden') + '">' + items + '</div>';
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+function toggleFolder(date){
+  var folder = document.querySelector('.log-folder[data-date="' + date + '"]');
+  if(!folder) return;
+  var body = folder.querySelector('.folder-body');
+  var tri = folder.querySelector('.tri');
+  var isOpen = folder.classList.toggle('open');
+  body.classList.toggle('hidden', !isOpen);
+  tri.textContent = isOpen ? '▼' : '▶';
+}
+
+function computeSummaryData(){
+  var today = todayStr();
+  var s = state.stats;
+  var doneTasks = state.tasks.filter(function(t){ return t.done; });
+  var undoneTasks = state.tasks.filter(function(t){ return !t.done; });
+  var totalTasks = state.tasks.length;
+  var completionRate = totalTasks > 0 ? Math.round(doneTasks.length / totalTasks * 100) : 0;
+  var todayCheckins = state.checkins.filter(function(c){ return c.records[today]; }).length;
+  var totalCheckinTasks = state.checkins.length;
+  var yd = dateStr(new Date(Date.now() - 86400000));
+  var yStats = state.dailyStats[yd] || { tasksDone: 0, xp: 0, checkins: 0 };
+  var ws = state.stats.weekStart;
+  var weekXP = 0, weekDays = 0;
+  Object.keys(state.dailyStats).forEach(function(d){
+    if(d >= ws && d < today){ weekXP += state.dailyStats[d].xp || 0; weekDays++; }
+  });
+  var avgXP = weekDays > 0 ? Math.round(weekXP / weekDays) : 0;
+  return { today: today, s: s, doneTasks: doneTasks, undoneTasks: undoneTasks, totalTasks: totalTasks, completionRate: completionRate, todayCheckins: todayCheckins, totalCheckinTasks: totalCheckinTasks, yStats: yStats, avgXP: avgXP };
+}
+
+function summaryHTML(){
+  var d = computeSummaryData();
+  var today = d.today, s = d.s, doneTasks = d.doneTasks, undoneTasks = d.undoneTasks;
+  var totalTasks = d.totalTasks, completionRate = d.completionRate;
+  var todayCheckins = d.todayCheckins, totalCheckinTasks = d.totalCheckinTasks;
+  var yStats = d.yStats, avgXP = d.avgXP;
+  var hour = new Date().getHours();
+  var greeting = hour < 6 ? '夜深了 🌙' : hour < 12 ? '早上好 ☀️' : hour < 18 ? '下午好 🌤' : '晚上好 🌆';
+  var dateReadable = today.replace(/-/g, ' / ');
+  var ringColor = completionRate >= 80 ? '#059669' : completionRate >= 50 ? '#f59e0b' : '#e11d48';
+  var maxXP = Math.max(s.todayXP, yStats.xp || 0, avgXP, 1);
+  var todayPct = Math.round(s.todayXP / maxXP * 100);
+  var yPct = Math.round((yStats.xp || 0) / maxXP * 100);
+  var avgPct = Math.round(avgXP / maxXP * 100);
+  var diffXP = s.todayXP - (yStats.xp || 0);
+  var diffClass = diffXP > 0 ? 'up' : diffXP < 0 ? 'down' : '';
+  var diffText = diffXP > 0 ? ('↑ 比昨天多 ' + diffXP) : diffXP < 0 ? ('↓ 比昨天少 ' + Math.abs(diffXP)) : '与昨天持平';
+  var html = '';
+  html += '<div class="sum-greeting"><div class="date">' + dateReadable + '</div><div class="hi">' + greeting + '</div></div>';
+  html += '<div class="sum-visuals">';
+  html += '<div class="sv-card"><div class="ring" style="background:conic-gradient(' + ringColor + ' 0% ' + completionRate + '%, #f1ebdf ' + completionRate + '% 100%)"><div class="ring-inner"><span>' + completionRate + '%</span></div></div><div class="sv-label">完成率</div><div class="sv-sub">' + doneTasks.length + ' / ' + totalTasks + '</div></div>';
+  html += '<div class="sv-card"><div class="sv-num">' + s.todayXP + '</div><div class="sv-label">今日 XP</div><div class="sv-sub ' + diffClass + '">' + diffText + '</div></div>';
+  html += '<div class="sv-card"><div class="sv-num">' + todayCheckins + '<span style="font-size:13px;color:var(--ink-400)">/' + totalCheckinTasks + '</span></div><div class="sv-label">今日打卡</div><div class="sv-sub">' + (totalCheckinTasks > 0 ? (todayCheckins === totalCheckinTasks ? '全部完成 ✨' : '继续加油') : '还没有打卡') + '</div></div>';
+  html += '<div class="sv-card"><div class="sv-num">' + avgXP + '</div><div class="sv-label">本周日均</div><div class="sv-sub">' + (s.todayXP > avgXP ? '↑ 高于平均' : s.todayXP < avgXP ? '↓ 低于平均' : '与平均持平') + '</div></div>';
+  html += '</div>';
+  html += '<div class="compare-chart"><div class="cc-title">XP 对比</div>';
+  html += '<div class="bar-row"><span class="bar-label">昨天</span><div class="bar-track"><div class="bar-fill" style="width:' + yPct + '%;background:linear-gradient(90deg,#fde68a,#fcd34d)"></div></div><span class="bar-val">' + (yStats.xp || 0) + '</span></div>';
+  html += '<div class="bar-row"><span class="bar-label">今天</span><div class="bar-track"><div class="bar-fill" style="width:' + todayPct + '%;background:linear-gradient(90deg,#fbbf24,#f59e0b)"></div></div><span class="bar-val">' + s.todayXP + '</span></div>';
+  html += '<div class="bar-row"><span class="bar-label">周均</span><div class="bar-track"><div class="bar-fill" style="width:' + avgPct + '%;background:linear-gradient(90deg,#c4b5fd,#a78bfa)"></div></div><span class="bar-val">' + avgXP + '</span></div>';
+  html += '</div>';
+  if(state.checkins.length > 0){
+    html += '<div class="checkin-dots"><div class="cd-title">今日打卡</div>';
+    state.checkins.forEach(function(c){
+      var on = !!c.records[today];
+      var st = streakCheckin(c);
+      html += '<div class="dot-row"><div class="dot ' + (on ? 'on' : '') + '">' + (on ? '✓' : '') + '</div><div class="dr-name">' + escapeHtml(c.name) + '</div><div class="dr-streak">' + (st > 0 ? ('连续 ' + st + ' 天') : '未开始') + '</div></div>';
+    });
+    html += '</div>';
+  }
+  if(state.milestones.length > 0){
+    html += '<div class="milestones-mini"><div class="mm-title">里程碑</div>';
+    state.milestones.forEach(function(m){
+      var cur = currentMsNode(m);
+      html += '<div class="ms-mini"><div class="ms-mini-head"><div class="name">' + escapeHtml(m.name) + '<span class="cur">' + (cur ? escapeHtml(cur.label) : '') + '</span></div><div class="pct">' + m.progress + '%</div></div><div class="ms-mini-bar"><div style="width:' + m.progress + '%"></div></div></div>';
+    });
+    html += '</div>';
+  }
+  html += '<div class="sum-block"><div class="bk-title">今天发生了什么</div>';
+  if(totalTasks === 0){
+    html += '<p>今天还没有设置任务。没有目标的一天也是允许的。</p>';
+  }else if(doneTasks.length === 0){
+    html += '<p>今天设了 <b>' + totalTasks + '</b> 个任务，但一个都还没完成。</p>';
+    html += '<p>没关系，明天把目标缩小一点，小到"你肯定能做到"。</p>';
+  }else{
+    html += '<p>今天完成了 <b>' + doneTasks.length + '/' + totalTasks + '</b> 个任务，拿到 <b>' + s.todayXP + ' XP</b>。</p>';
+    if(completionRate === 100) html += '<p>✨ 全部完成！执行力值得被看见。</p>';
+    else if(completionRate >= 70) html += '<p>完成率 <b>' + completionRate + '%</b>，很稳。</p>';
+    else if(completionRate >= 40) html += '<p>完成率 <b>' + completionRate + '%</b>，还有空间。明天挑最重要的先做。</p>';
+    else html += '<p>完成率 <b>' + completionRate + '%</b>，今天状态一般。明天重新出发。</p>';
+  }
+  html += '</div>';
+  if(doneTasks.length > 0){
+    html += '<div class="sum-block"><div class="bk-title">已完成</div><ul class="sum-list">';
+    doneTasks.forEach(function(t){
+      html += '<li class="done">' + escapeHtml(t.name) + '<span class="xp-tag">+' + t.xp + ' XP</span></li>';
+    });
+    html += '</ul></div>';
+  }
+  if(undoneTasks.length > 0){
+    html += '<div class="sum-block"><div class="bk-title">待完成</div><ul class="sum-list">';
+    undoneTasks.forEach(function(t){
+      html += '<li class="todo">' + escapeHtml(t.name) + '<span class="xp-tag">' + t.xp + ' XP</span></li>';
+    });
+    html += '</ul></div>';
+  }
+  var critiques = [];
+  if(totalTasks > 0 && doneTasks.length < totalTasks * 0.5){ critiques.push('今天任务完成率偏低。可能任务设得太多，明天试着只留 3 个。'); }
+  if(s.todayXP > 0 && s.todayXP < 50 && doneTasks.length > 0){ critiques.push('今天 XP 收获不多。可以挑一段 25 分钟完全无干扰的专注时间试试。'); }
+  if(undoneTasks.some(function(t){ return t.xp >= 60; })){ critiques.push('高价值任务还没动，明天优先安排它们在精力最好的时段。'); }
+  if(totalCheckinTasks > 0 && todayCheckins === 0){ critiques.push('今天打卡一项都没完成。明天先做 1 项把链条接上。'); }
+  if(critiques.length > 0){
+    html += '<div class="tip-box"><div class="tb-title">🌱 温和的提醒</div>';
+    critiques.forEach(function(c){ html += '<p>· ' + escapeHtml(c) + '</p>'; });
+    html += '</div>';
+  }
+  var praises = [];
+  if(doneTasks.length > 0) praises.push('你今天迈出了实实在在的步伐，值得肯定。');
+  if(s.todayXP >= 100) praises.push('今天 ' + s.todayXP + ' XP，高效的一天，记住这种感觉。');
+  if(todayCheckins > 0) praises.push('打卡 ' + todayCheckins + ' 项，习惯正在悄悄成形。');
+  if(doneTasks.length >= 3) praises.push('一口气完成 ' + doneTasks.length + ' 个任务，很稳。');
+  if(avgXP > 0 && s.todayXP > avgXP) praises.push('今天超过本周平均水平，进步看得见。');
+  if(praises.length === 0) praises.push('哪怕今天只完成了一件小事，也是在前进。');
+  html += '<div class="warm-box"><div class="wb-title">💛 给你的话</div>';
+  praises.forEach(function(p){ html += '<p>· ' + escapeHtml(p) + '</p>'; });
+  html += '</div>';
+  var tomorrowText;
+  if(undoneTasks.length > 0){
+    var first = undoneTasks.slice().sort(function(a,b){ return b.xp - a.xp; })[0];
+    tomorrowText = '明天先做「' + first.name + '」，完成它你就赢了一半。';
+  }else if(totalTasks === 0){
+    tomorrowText = '明天早上，先写下 1 件非做不可的小事。';
+  }else{
+    tomorrowText = '今天全部清空，明天可以稍微加点难度，或给自己留半天休息。';
+  }
+  html += '<div class="tomorrow-box"><div class="tb-label">🌅 给明天的一句话</div><div class="tb-text">' + escapeHtml(tomorrowText) + '</div></div>';
+  html += '<div class="well-done">晚安，明天见 🌙</div>';
+  return html;
+}
+
+function openSummary(){
+  if(!state.dailySummaries) state.dailySummaries = {};
+  state.dailySummaries[todayStr()] = 'summary';
+  log('📝 生成今日总结');
+  save();
+  document.getElementById('summaryContent').innerHTML = summaryHTML();
+  document.getElementById('summaryModal').classList.add('show');
+  render();
+}
+function closeSummary(){
+  document.getElementById('summaryModal').classList.remove('show');
+}
+function copySummary(){
+  var el = document.getElementById('summaryContent');
+  var text = el ? el.innerText : '';
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){ toast('已复制'); });
+  }else{
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast('已复制');
+  }
+}
+
+document.getElementById('summaryModal').addEventListener('click', function(e){
+  if(e.target.id === 'summaryModal') closeSummary();
+});
+document.getElementById('statModal').addEventListener('click', function(e){
+  if(e.target.id === 'statModal') closeStatEditor();
+});
+
+var toastTimer;
+function toast(msg){
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 2200);
+}
+
+function exportSave(){
+  var blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'life-rpg-save-' + todayStr() + '.json';
+  a.click();
+  toast('已导出');
+}
+function importSave(e){
+  var f = e.target.files[0];
+  if(!f) return;
+  var reader = new FileReader();
+  reader.onload = function(ev){
+    try{
+      var raw = JSON.parse(ev.target.result);
+      state = normalizeState(raw);
+      save(); render();
+      toast('已导入');
+    }catch(err){ toast('导入失败'); }
+  };
+  reader.readAsText(f);
+  e.target.value = '';
+}
+function wipe(){
+  if(!confirm('确定清空当前账号的所有数据？此操作不可恢复。')) return;
+  undoStack = [];
+  editingTaskId = null; editingCheckinId = null;
+  pinnedCalendars.clear();
+  state = defaultState();
+  save(); render();
+  toast('已重置');
+}
+
+async function boot(){
+  supabase.auth.onAuthStateChange(function(event, session){
+    if(event === 'SIGNED_OUT'){
+      currentUser = null;
+      showAuth();
+    }
+  });
+  var { data: { session } } = await supabase.auth.getSession();
+  if(session && session.user){
+    currentUser = session.user;
+    await afterLogin();
+  }else{
+    showAuth();
+  }
+}
+
+boot();
+setInterval(checkNewDay, 60000);
+</script>
+</body>
+</html>
