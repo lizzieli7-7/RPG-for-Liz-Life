@@ -329,6 +329,18 @@ main{
   .avatar{width:36px;height:36px;font-size:17px;border-radius:9px}
   .xp-wrap{min-width:120px}
   .panel{padding:20px}
+  /* 任务行按钮变多，窄屏自动换行并压缩 */
+  .task{flex-wrap:wrap; gap:8px 9px}
+  .task .name{min-width:0; flex:1 1 100%; order:3}
+  .task-ops,.icon-ops{margin-left:auto}
+  .tag.xp, .tag.coin{font-size:10px; padding:2px 7px}
+  .op-btn{width:21px; height:21px; font-size:11.5px}
+  .prio-btn{width:21px; height:21px}
+  .dp-btn{width:30px; height:30px}
+  /* 打卡行也多了手柄和优先级，窄屏收紧间距并允许换行 */
+  .ck-row{flex-wrap:wrap; gap:7px}
+  .ck-name{flex:1 1 100%; order:3}
+  .drag-handle{opacity:.85}
 }
 .col{display:flex; flex-direction:column; gap:20px; min-width:0}
 
@@ -466,6 +478,163 @@ button:disabled{opacity:.4; cursor:not-allowed; transform:none !important}
 .check.on{background:var(--clay); border-color:var(--clay); color:#fff; font-weight:700}
 .edit-input{flex:1; min-width:70px; padding:6px 10px}
 .edit-num{width:60px; padding:6px 8px}
+
+/* ---- 任务：紧急程度标记（红三角 / 黄圆 / 无） ---- */
+.prio-btn{
+  width:23px; height:23px; flex-shrink:0; padding:0;
+  border:1px solid transparent; border-radius:50%;
+  background:transparent; cursor:pointer; color:var(--muted);
+  display:flex; align-items:center; justify-content:center;
+  transition:.15s;
+}
+.prio-btn:hover{background:var(--bg-2); border-color:var(--line-2)}
+.prio-btn .pi{width:13px; height:13px; display:block}
+.prio-btn.p-urgent .pi{width:14px; height:13px}
+.prio-btn.p-normal .pi{width:14px; height:14px}
+.prio-btn.p-none .pi{opacity:.42}
+.prio-btn.p-none:hover .pi{opacity:.85}
+.prio-btn.p-urgent:hover{background:var(--red-bg); border-color:#f0cfc8}
+.prio-btn.p-normal:hover{background:var(--gold-bg); border-color:#f2e2b8}
+
+/* ---- 顺延小红旗 ---- */
+.flag-wrap{
+  display:inline-flex; align-items:center; gap:3px;
+  margin-right:5px; vertical-align:-2px; cursor:help; flex-shrink:0;
+}
+.tsk-flag{width:10px; height:12px; display:block}
+.flag-n{
+  font-size:9.5px; font-weight:700; color:#b54a3c;
+  background:var(--red-bg); border-radius:5px;
+  padding:0 4px; line-height:14px; letter-spacing:.2px;
+}
+.task.done .flag-wrap{opacity:.55}
+
+/* ---- 通用图标操作按钮（铅笔 / 叉叉 / 拖动，各卡片统一） ---- */
+.task-ops,.icon-ops{display:flex; align-items:center; gap:2px; flex-shrink:0}
+.op-btn{
+  width:22px; height:22px; flex-shrink:0; padding:0;
+  border:1px solid transparent; border-radius:6px;
+  background:transparent; color:var(--ink-3);
+  font-size:12px; line-height:1; font-family:inherit;
+  cursor:pointer; transition:.13s;
+  display:flex; align-items:center; justify-content:center;
+}
+.op-btn:hover{background:var(--bg-2); color:var(--ink-1); border-color:var(--line-2)}
+.op-btn.danger:hover{background:var(--red-bg); color:var(--red); border-color:#f0cfc8}
+.op-btn .oi{width:13px; height:13px; display:block; pointer-events:none}
+.op-btn.cal{font-size:13.5px}
+
+/* ---- 拖动排序手柄（三条横线） ---- */
+.drag-handle{
+  width:20px; height:24px; flex-shrink:0; padding:0;
+  border:1px solid transparent; border-radius:5px;
+  background:transparent; color:var(--muted);
+  cursor:grab; touch-action:none;
+  display:flex; align-items:center; justify-content:center;
+  transition:.13s; opacity:.55;
+}
+.drag-handle:hover{opacity:1; background:var(--bg-2); border-color:var(--line-2); color:var(--ink-2)}
+.drag-handle .oi{width:11px; height:13px; display:block; pointer-events:none}
+.drag-handle.grabbing{cursor:grabbing; opacity:1; background:var(--clay-soft); border-color:var(--clay-bg); color:var(--clay)}
+[data-row].lifted{opacity:.9; border-color:var(--clay); box-shadow:0 8px 20px rgba(38,32,22,.16); background:var(--card-2); position:relative; z-index:5}
+[data-row].lifted .drag-handle{opacity:1}
+
+/* ---- 日期选择：日历图标 + 展开弹层 ---- */
+.dp-wrap{position:relative; flex-shrink:0; display:flex; align-items:center; gap:6px}
+.dp-btn{
+  width:32px; height:32px; flex-shrink:0; padding:0;
+  border:1px solid var(--line-2); border-radius:8px;
+  background:#fff; font-size:14px; line-height:1;
+  cursor:pointer; transition:.15s;
+  display:flex; align-items:center; justify-content:center;
+}
+.dp-btn:hover{border-color:var(--clay-bg); background:var(--clay-soft)}
+.dp-btn.on{border-color:var(--clay); background:var(--clay-soft)}
+.dp-chip{
+  display:inline-flex; align-items:center; gap:4px;
+  padding:3px 4px 3px 9px; border-radius:999px;
+  background:var(--clay-soft); border:1px solid var(--clay-bg);
+  font-size:11px; font-weight:600; color:var(--clay-2); white-space:nowrap;
+}
+.dp-chip .clr{
+  width:15px; height:15px; padding:0; border:none; border-radius:50%;
+  background:transparent; color:var(--clay-2); cursor:pointer;
+  font-size:10px; line-height:1; font-family:inherit;
+  display:flex; align-items:center; justify-content:center;
+}
+.dp-chip .clr:hover{background:var(--clay-bg)}
+.dp-pop{
+  position:fixed; z-index:400; width:246px; display:none;
+  background:var(--card); border:1px solid var(--line);
+  border-radius:var(--r); padding:12px;
+  box-shadow:0 14px 34px rgba(38,32,22,.18);
+}
+.dp-pop.show{display:block}
+.dp-pop .cal-head{padding:4px 0 10px}
+.dp-pop .cal-day.sel{background:var(--clay); color:#fff; border-color:var(--clay); font-weight:600}
+.dp-pop .cal-day.off{color:var(--muted); opacity:.4; cursor:default; background:transparent}
+.dp-pop .cal-day.off:hover{background:transparent; border-color:var(--line-2)}
+.dp-foot{
+  display:flex; align-items:center; gap:6px; margin-top:10px;
+  padding-top:9px; border-top:1px dashed var(--line);
+}
+.dp-foot .sp{margin-left:auto}
+
+/* ---- 紧急程度选择器 ---- */
+.prio-picker{
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  margin:-2px 0 8px; padding:8px 10px;
+  background:var(--bg-2); border:1px solid var(--line-2);
+  border-radius:var(--r-sm);
+}
+.pp-label{font-size:11px; font-weight:600; color:var(--ink-3); margin-right:2px}
+.pp-item{
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 9px; border-radius:999px;
+  border:1px solid var(--line); background:var(--card);
+  font-size:11.5px; font-family:inherit; color:var(--ink-2);
+  cursor:pointer; transition:.13s;
+}
+.pp-item .pi{width:12px; height:12px; flex-shrink:0}
+.pp-item:hover{border-color:var(--clay); background:var(--clay-soft)}
+.pp-item.sel{border-color:var(--clay); background:var(--clay-soft); color:var(--ink-1); font-weight:600}
+.pp-item.sel .pi{opacity:1}
+.pp-close{
+  margin-left:auto; padding:5px 10px; border-radius:999px;
+  border:1px solid var(--line); background:transparent;
+  font-size:11px; font-family:inherit; color:var(--ink-3); cursor:pointer;
+}
+.pp-close:hover{color:var(--ink-1)}
+
+/* ---- 后续日程 ---- */
+.sched-wrap{margin-top:14px; border-top:1px dashed var(--line); padding-top:11px}
+.sched-head{
+  display:flex; align-items:center; gap:7px; cursor:pointer;
+  font-size:12.5px; font-weight:600; color:var(--ink-2);
+  user-select:none; padding:2px 0;
+}
+.sched-head:hover{color:var(--clay)}
+.sched-head .sh-ico{font-size:12px}
+.sched-count{
+  font-size:10.5px; font-weight:700; color:var(--clay);
+  background:var(--clay-soft); border:1px solid var(--clay-bg);
+  border-radius:999px; padding:1px 7px; line-height:15px;
+}
+.sched-arrow{margin-left:auto; font-size:11px; color:var(--muted)}
+.sched-list{display:none; margin-top:8px}
+.sched-list.show{display:block}
+.sched-group{margin-bottom:10px}
+.sched-date{
+  display:flex; align-items:baseline; gap:6px;
+  font-size:11.5px; font-weight:700; color:var(--ink-3);
+  padding:2px 2px 6px;
+}
+.sched-date em{font-style:normal; font-size:10.5px; font-weight:500; color:var(--muted)}
+.task.sched{background:var(--card-2); border-style:dashed}
+.sched-dot{
+  width:9px; height:9px; border-radius:50%; flex-shrink:0;
+  border:1.5px solid var(--muted); margin:0 5px 0 1px;
+}
 
 .ck{
   background:#fff; border-radius:var(--r);
@@ -1778,11 +1947,26 @@ button:disabled{opacity:.4; cursor:not-allowed; transform:none !important}
     <section class="panel">
       <h2><span class="h2-left"><span class="h2-deco"></span><span class="h2-text">今日任务</span></span></h2>
       <div class="row" style="margin-bottom:12px">
-        <input id="taskName" placeholder="输入任务..." style="flex:1; min-width:130px">
-        <input id="taskXP" type="text" value="30" placeholder="30 或 30+5" style="width:100px" title="格式：30 表示 XP=30 金币=5；30+8 表示 XP=30 金币=8">
+        <input id="taskName" placeholder="输入任务..." style="flex:1; min-width:110px">
+        <input id="taskXP" type="text" value="30" placeholder="30 或 30+5" style="width:92px" title="格式：30 表示 XP=30 金币=5；30+8 表示 XP=30 金币=8">
+        <div class="dp-wrap">
+          <button type="button" class="dp-btn" id="taskDateBtn" onclick="toggleDatePop(event)" title="选择日期 · 留空＝今日任务">📅</button>
+          <span class="dp-chip" id="taskDateChip" style="display:none"></span>
+        </div>
         <button class="btn-primary" onclick="addTask()">+ 添加</button>
-      </div>      <div id="taskList"></div>
+      </div>
+      <div id="taskList"></div>
       <div class="sub" id="taskSummary"></div>
+
+      <div id="schedWrap" class="sched-wrap" style="display:none">
+        <div class="sched-head" onclick="toggleSched()">
+          <span class="sh-ico">📅</span>
+          <span class="sh-text">后续日程</span>
+          <span class="sched-count" id="schedCount">0</span>
+          <span class="sched-arrow" id="schedArrow">▾</span>
+        </div>
+        <div id="schedList" class="sched-list show"></div>
+      </div>
     </section>
 
     <section class="panel">
@@ -1951,6 +2135,7 @@ button:disabled{opacity:.4; cursor:not-allowed; transform:none !important}
 </div>
 
 <div class="toast" id="toast"></div>
+<div class="dp-pop" id="datePickPop"></div>
 
 <!-- ===== 装饰工具栏 ===== -->
 <button class="deco-fab" id="decoFab" onclick="toggleDecoPanel()" title="装饰工具栏">🎨<span class="badge" id="decoBadge">0</span></button>
@@ -2033,9 +2218,9 @@ function defaultState(){
   return {
     level: 1, xp: 0, coins: 0,
     tasks: [
-      { id: uid(), name: '深度工作 1 小时', xp: 40, coins: 8, done: false },
-      { id: uid(), name: '运动 30 分钟', xp: 30, coins: 6, done: false },
-      { id: uid(), name: '阅读 30 分钟', xp: 20, coins: 4, done: false }
+      { id: uid(), name: '深度工作 1 小时', xp: 40, coins: 8, done: false, prio: 'urgent', date: '', deferCount: 0 },
+      { id: uid(), name: '运动 30 分钟', xp: 30, coins: 6, done: false, prio: 'normal', date: '', deferCount: 0 },
+      { id: uid(), name: '阅读 30 分钟', xp: 20, coins: 4, done: false, prio: '', date: '', deferCount: 0 }
     ],
     rewards: [
       { id: uid(), name: '看一集剧', cost: 50 },
@@ -2047,7 +2232,7 @@ function defaultState(){
       { id: uid(), name: '每周大宝箱', conditionType: 'weekTasks', conditionValue: 15, rewardCoins: 200, rewardXP: 100 }
     ],
     chestClaims: {},
-    checkins: [ { id: uid(), name: '早起', xp: 5, coins: 2, records: {} } ],
+    checkins: [ { id: uid(), name: '早起', xp: 5, coins: 2, records: {}, prio: '' } ],
     milestones: [
       { id: uid(), name: '示例：写一本小说', progress: 20,
         nodes: [
@@ -2090,10 +2275,18 @@ function normalizeState(s){
   if(!Array.isArray(merged.milestones)) merged.milestones = d.milestones;
   if(!Array.isArray(merged.surprises)) merged.surprises = d.surprises;
   merged.tasks = merged.tasks.map(function(t){
-    return { id: t.id || uid(), name: t.name || '任务', xp: Math.max(0, t.xp || 0), coins: Math.max(0, t.coins || 0), done: !!t.done };
+    var prio = (t.prio === 'urgent' || t.prio === 'normal') ? t.prio : '';
+    var d = (typeof t.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(t.date)) ? t.date : '';
+    return {
+      id: t.id || uid(), name: t.name || '任务',
+      xp: Math.max(0, t.xp || 0), coins: Math.max(0, t.coins || 0),
+      done: !!t.done, prio: prio, date: d,
+      deferCount: Math.max(0, parseInt(t.deferCount, 10) || 0)
+    };
   });
   merged.checkins = merged.checkins.map(function(c){
-    return { id: c.id || uid(), name: c.name || '打卡', xp: Math.max(0, c.xp === undefined ? 5 : c.xp), coins: Math.max(0, c.coins === undefined ? 2 : c.coins), records: c.records || {} };
+    var prio = (c.prio === 'urgent' || c.prio === 'normal') ? c.prio : '';
+    return { id: c.id || uid(), name: c.name || '打卡', xp: Math.max(0, c.xp === undefined ? 5 : c.xp), coins: Math.max(0, c.coins === undefined ? 2 : c.coins), records: c.records || {}, prio: prio };
   });
   merged.milestones = merged.milestones.map(function(m){
     var nm = { id: m.id || uid(), name: m.name || '里程碑', progress: 0, nodes: [] };
@@ -2636,6 +2829,7 @@ function applyXP(amount){
   return lv;
 }
 function doDailyReset(silent){
+  var promoted = promoteScheduledTasks();   /* 到期的后续日程自动回到今日任务 */
   state.tasks.forEach(function(t){ t.done = false; });
   state.lastReset = todayStr();
   state.stats.todayDate = todayStr();
@@ -2644,6 +2838,7 @@ function doDailyReset(silent){
   state.stats.todayCheckins = 0;
   var ws = getWeekStart();
   if(ws !== state.stats.weekStart){ state.stats.weekStart = ws; state.stats.weekTasksDone = 0; }
+  if(promoted > 0) log('📅 ' + promoted + ' 项后续日程到期，已回到今日任务');
   if(!silent) log('🌅 新的一天，任务已重置');
 }
 function resetDay(){
@@ -2715,18 +2910,335 @@ function randomizeLowPolyPanels(){
 document.addEventListener('click', function(e){
   var menu = document.getElementById('skinMenu');
   if(menu && !e.target.closest('.skin-switcher')) menu.classList.remove('show');
+  /* 点击日历弹层之外的地方 → 收起 */
+  if(datePopOpen && e.target.closest){
+    if(!e.target.closest('#datePickPop') && !e.target.closest('#taskDateBtn')) closeDatePop();
+  }
 });
+window.addEventListener('resize', function(){ if(datePopOpen) positionDatePop(); });
+window.addEventListener('scroll', function(){ if(datePopOpen) positionDatePop(); }, true);
+/* ==================== 任务：日程 / 顺延 / 优先级 / 排序 ==================== */
+
+var PRIO_META = {
+  urgent: { label: '紧急重要', short: '急' },
+  normal: { label: '一般重要', short: '要' },
+  '':     { label: '无标记',   short: '' }
+};
+var taskPrioPicker = null;   /* 当前展开优先级选择器的任务 id */
+var checkinPrioPicker = null;/* 打卡项的优先级选择器 */
+var schedOpen = true;        /* 后续日程区是否展开 */
+var taskDateSel = '';        /* 添加任务时选中的日期，空＝今日任务 */
+var datePopOpen = false;     /* 日历弹层是否展开 */
+var datePopView = null;      /* 日历弹层当前显示的 {y, m} */
+
+function addDays(base, n){ var d = new Date(base); d.setDate(d.getDate() + n); return d; }
+function parseDateStr(ds){
+  var p = String(ds || '').split('-');
+  return new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+}
+/* 有日期且晚于今天 = 后续日程；否则属于今日任务 */
+function isScheduled(t){ return !!(t.date && t.date > todayStr()); }
+function dateLabel(ds){
+  if(!ds || ds === todayStr()) return '今天';
+  if(ds === dateStr(addDays(new Date(), 1))) return '明天';
+  var d = parseDateStr(ds);
+  var wd = ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()];
+  return (d.getMonth() + 1) + '月' + d.getDate() + '日 ' + wd;
+}
+/* 到期的日程自动回到今日任务（顺延的保留小红旗） */
+function promoteScheduledTasks(){
+  var today = todayStr(), n = 0;
+  state.tasks.forEach(function(t){
+    if(t.date && t.date <= today){ t.date = ''; t.done = false; n++; }
+  });
+  return n;
+}
+function deferTask(id){
+  var t = state.tasks.find(function(x){ return x.id === id; });
+  if(!t) return;
+  if(t.done){ toast('已完成的任务不用顺延'); return; }
+  pushUndo();
+  t.date = dateStr(addDays(new Date(), 1));
+  t.deferCount = (t.deferCount || 0) + 1;
+  log('🚩 顺延：' + t.name + ' → ' + t.date + '（第 ' + t.deferCount + ' 次）');
+  save(); render();
+  toast('🚩 已顺延到明天');
+}
+function bringToToday(id){
+  var t = state.tasks.find(function(x){ return x.id === id; });
+  if(!t) return;
+  pushUndo();
+  t.date = '';
+  t.done = false;
+  log('⤴ 提前到今天：' + t.name);
+  save(); render();
+  toast('已移回今天');
+}
+function setTaskPrio(id, prio){
+  var t = state.tasks.find(function(x){ return x.id === id; });
+  if(!t) return;
+  if(prio !== 'urgent' && prio !== 'normal') prio = '';
+  if(t.prio === prio){ taskPrioPicker = null; render(); return; }
+  pushUndo();
+  t.prio = prio;
+  taskPrioPicker = null;
+  log('标记：' + t.name + ' → ' + PRIO_META[prio].label);
+  save(); render();
+}
+function openPrioPicker(id){
+  taskPrioPicker = (taskPrioPicker === id) ? null : id;
+  render();
+}
+function setCheckinPrio(id, prio){
+  var c = state.checkins.find(function(x){ return x.id === id; });
+  if(!c) return;
+  if(prio !== 'urgent' && prio !== 'normal') prio = '';
+  if(c.prio === prio){ checkinPrioPicker = null; render(); return; }
+  pushUndo();
+  c.prio = prio;
+  checkinPrioPicker = null;
+  log('标记：' + c.name + ' → ' + PRIO_META[prio].label);
+  save(); render();
+}
+function openCheckinPrioPicker(id){
+  checkinPrioPicker = (checkinPrioPicker === id) ? null : id;
+  render();
+}
+/* ==================== 拖动排序（三条横线手柄） ==================== */
+var rowDrag = null;
+/* 同组判定：今日任务之间可互换；日程项只在"同一天"内互换 */
+function sameDragGroup(a, b){
+  if(a.getAttribute('data-kind') !== b.getAttribute('data-kind')) return false;
+  return (a.getAttribute('data-date') || '') === (b.getAttribute('data-date') || '');
+}
+function commitDragOrder(){
+  var kind = rowDrag.kind;
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-row][data-kind="' + kind + '"]'));
+  var list = (kind === 'task') ? state.tasks : state.checkins;
+  var map = {};
+  list.forEach(function(o){ map[o.id] = o; });
+  var arr = [];
+  nodes.forEach(function(n){
+    var o = map[n.getAttribute('data-id')];
+    if(o && arr.indexOf(o) < 0) arr.push(o);
+  });
+  list.forEach(function(o){ if(arr.indexOf(o) < 0) arr.push(o); });  /* 兜底，防止丢项 */
+  if(kind === 'task') state.tasks = arr; else state.checkins = arr;
+}
+function endRowDrag(){
+  if(!rowDrag) return;
+  if(rowDrag.row) rowDrag.row.classList.remove('lifted');
+  if(rowDrag.grip) rowDrag.grip.classList.remove('grabbing');
+  if(rowDrag.moved) commitDragOrder();
+  rowDrag = null;
+  save(); render();
+}
+(function initRowDrag(){
+  function down(e){
+    var grip = e.target && e.target.closest ? e.target.closest('[data-grip]') : null;
+    if(!grip) return;
+    var row = grip.closest('[data-row]');
+    if(!row) return;
+    rowDrag = { grip: grip, row: row, kind: grip.getAttribute('data-kind'), moved: false };
+    grip.classList.add('grabbing');
+    row.classList.add('lifted');
+    e.preventDefault();
+    if(e.stopPropagation) e.stopPropagation();
+  }
+  function move(e){
+    if(!rowDrag) return;
+    var p = e.touches ? e.touches[0] : e;
+    var under = document.elementFromPoint(p.clientX, p.clientY);
+    var target = under && under.closest ? under.closest('[data-row]') : null;
+    if(!target || target === rowDrag.row) return;
+    if(!sameDragGroup(target, rowDrag.row)) return;      /* 跨组（今日↔日程、不同日期）不移动 */
+    var r = target.getBoundingClientRect();
+    var after = (p.clientY - r.top) > (r.height / 2);
+    var ref = after ? target.nextSibling : target;
+    if(ref === rowDrag.row) return;
+    target.parentNode.insertBefore(rowDrag.row, ref);
+    rowDrag.moved = true;
+    e.preventDefault();
+  }
+  function up(){ endRowDrag(); }
+  document.addEventListener('pointerdown', down, { passive: false });
+  document.addEventListener('pointermove', move, { passive: false });
+  document.addEventListener('pointerup', up);
+  document.addEventListener('pointercancel', up);
+  /* 触屏兜底（老浏览器无 PointerEvent） */
+  document.addEventListener('touchstart', function(e){
+    if(e.target && e.target.closest && e.target.closest('[data-grip]')) down(e);
+  }, { passive: false });
+  document.addEventListener('touchmove', function(e){ if(rowDrag) move(e); }, { passive: false });
+  document.addEventListener('touchend', up);
+})();
+function toggleSched(){
+  schedOpen = !schedOpen;
+  var el = document.getElementById('schedList');
+  var ar = document.getElementById('schedArrow');
+  if(el) el.classList.toggle('show', schedOpen);
+  if(ar) ar.textContent = schedOpen ? '▾' : '▸';
+}
+
+/* 优先级图标：SVG 手绘，圆角描边保证"圆润"，且不随皮肤变色 */
+function prioSvg(kind){
+  if(kind === 'urgent'){
+    return '<svg class="pi" viewBox="0 0 14 13" aria-hidden="true">' +
+      '<path d="M7 1.4 12.6 10.5 1.4 10.5Z" fill="#e2574c" stroke="#e2574c" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg>';
+  }
+  if(kind === 'normal'){
+    return '<svg class="pi" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.3" fill="#f0b429"/></svg>';
+  }
+  return '<svg class="pi" viewBox="0 0 14 14" aria-hidden="true">' +
+    '<circle cx="7" cy="7" r="4.9" fill="none" stroke="currentColor" stroke-width="1.35" stroke-dasharray="2.2 2.2" stroke-linecap="round"/></svg>';
+}
+function flagSvg(){
+  return '<svg class="tsk-flag" viewBox="0 0 12 14" aria-hidden="true">' +
+    '<path d="M2.5 1.4v11.2" stroke="#b54a3c" stroke-width="1.7" stroke-linecap="round" fill="none"/>' +
+    '<path d="M3.5 1.6h6.2a.95.95 0 0 1 .95.95v3.05a.95.95 0 0 1-.95.95H3.5z" fill="#b54a3c"/></svg>';
+}
+/* 通用行内图标：铅笔 / 叉叉 / 三条横线（各卡片统一使用） */
+function pencilSvg(){
+  return '<svg class="oi" viewBox="0 0 14 14" aria-hidden="true">' +
+    '<path d="M9.9 1.55l2.55 2.55-1.1 1.1-2.55-2.55z" fill="currentColor"/>' +
+    '<path d="M8.75 2.7l2.55 2.55-6.2 6.2-3.1.75.75-3.1z" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"/>' +
+    '</svg>';
+}
+function crossSvg(){
+  return '<svg class="oi" viewBox="0 0 14 14" aria-hidden="true">' +
+    '<path d="M3.6 3.6l6.8 6.8M10.4 3.6l-6.8 6.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>' +
+    '</svg>';
+}
+function gripSvg(){
+  return '<svg class="oi" viewBox="0 0 12 14" aria-hidden="true">' +
+    '<path d="M2.4 4.2h7.2M2.4 7h7.2M2.4 9.8h7.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+    '</svg>';
+}
+function editBtn(fn, title){
+  return '<button class="op-btn" onclick="' + fn + '" title="' + title + '" aria-label="' + title + '">' + pencilSvg() + '</button>';
+}
+function delBtn(fn, title){
+  return '<button class="op-btn danger" onclick="' + fn + '" title="' + title + '" aria-label="' + title + '">' + crossSvg() + '</button>';
+}
+/* 拖动排序手柄：kind = task | checkin */
+function gripBtn(kind, id){
+  return '<span class="drag-handle" data-grip="1" data-kind="' + kind + '" data-id="' + id + '"' +
+    ' title="按住拖动调整顺序" aria-label="拖动排序">' + gripSvg() + '</span>';
+}
+
+/* ==================== 日期选择：📅 图标 → 展开日历 ==================== */
+function datePopEl(){ return document.getElementById('datePickPop'); }
+function toggleDatePop(e){
+  if(e) e.stopPropagation();
+  if(datePopOpen) closeDatePop(); else openDatePop();
+}
+function openDatePop(){
+  var d = taskDateSel ? parseDateStr(taskDateSel) : addDays(new Date(), 1);
+  datePopView = { y: d.getFullYear(), m: d.getMonth() };
+  datePopOpen = true;
+  renderDatePop();
+}
+function closeDatePop(){
+  datePopOpen = false;
+  var el = datePopEl();
+  if(el) el.classList.remove('show');
+  syncDateChip();
+}
+function shiftDatePopMonth(n){
+  if(!datePopView) return;
+  var d = new Date(datePopView.y, datePopView.m + n, 1);
+  datePopView = { y: d.getFullYear(), m: d.getMonth() };
+  renderDatePop();
+}
+function pickTaskDate(ds){
+  /* 今天或更早 = 今日任务；未来 = 后续日程 */
+  taskDateSel = (ds && ds > todayStr()) ? ds : '';
+  closeDatePop();
+  toast(taskDateSel ? '📅 将加入 ' + dateLabel(taskDateSel) + ' 的日程' : '将加入今日任务');
+}
+function clearTaskDate(e){
+  if(e) e.stopPropagation();
+  taskDateSel = '';
+  syncDateChip();
+}
+function syncDateChip(){
+  var chip = document.getElementById('taskDateChip');
+  var btn = document.getElementById('taskDateBtn');
+  if(chip){
+    if(taskDateSel){
+      chip.style.display = '';
+      chip.innerHTML = '<span>' + dateLabel(taskDateSel) + '</span>' +
+        '<button class="clr" onclick="clearTaskDate(event)" title="清除，改为今日任务">✕</button>';
+    }else{
+      chip.style.display = 'none';
+      chip.innerHTML = '';
+    }
+  }
+  if(btn) btn.classList.toggle('on', !!taskDateSel);
+}
+function renderDatePop(){
+  var el = datePopEl();
+  if(!el || !datePopView) return;
+  var y = datePopView.y, m = datePopView.m;
+  var firstDay = new Date(y, m, 1).getDay();
+  var daysInMonth = new Date(y, m + 1, 0).getDate();
+  var today = todayStr();
+  var h = '<div class="cal-head">' +
+    '<button class="btn-ghost btn-sm" onclick="shiftDatePopMonth(-1)">◀</button>' +
+    '<span>' + y + ' 年 ' + (m + 1) + ' 月</span>' +
+    '<button class="btn-ghost btn-sm" onclick="shiftDatePopMonth(1)">▶</button></div>' +
+    '<div class="cal-grid">';
+  ['一','二','三','四','五','六','日'].forEach(function(w){ h += '<div class="cal-w">' + w + '</div>'; });
+  var off = firstDay === 0 ? 6 : firstDay - 1;
+  for(var i = 0; i < off; i++) h += '<div class="cal-day empty"></div>';
+  for(var d = 1; d <= daysInMonth; d++){
+    var ds = y + '-' + String(m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    var cls = 'cal-day';
+    if(ds < today) cls += ' off';
+    if(ds === taskDateSel) cls += ' sel';
+    else if(ds === today) cls += ' today';
+    h += ds < today
+      ? '<div class="' + cls + '">' + d + '</div>'
+      : '<div class="' + cls + '" onclick="pickTaskDate(\'' + ds + '\')">' + d + '</div>';
+  }
+  h += '</div><div class="dp-foot">' +
+    '<button class="btn-ghost btn-sm" onclick="pickTaskDate(\'' + dateStr(addDays(new Date(), 1)) + '\')">明天</button>' +
+    '<button class="btn-ghost btn-sm" onclick="pickTaskDate(\'\')">今天</button>' +
+    '<button class="btn-ghost btn-sm sp" onclick="closeDatePop()">关闭</button></div>';
+  el.innerHTML = h;
+  el.classList.add('show');
+  positionDatePop();
+}
+/* 弹层挂 body 下，避免被卡片的 overflow:hidden 裁掉 */
+function positionDatePop(){
+  var el = datePopEl();
+  var btn = document.getElementById('taskDateBtn');
+  if(!el || !btn) return;
+  var r = btn.getBoundingClientRect();
+  var w = el.offsetWidth || 246, hgt = el.offsetHeight || 250;
+  var left = r.left + r.width / 2 - w / 2;
+  var top = r.bottom + 8;
+  if(top + hgt > window.innerHeight - 8) top = Math.max(8, r.top - hgt - 8);
+  left = Math.max(8, Math.min(left, window.innerWidth - w - 8));
+  el.style.left = Math.round(left) + 'px';
+  el.style.top = Math.round(top) + 'px';
+}
+
 function addTask(){
   var nameEl = document.getElementById('taskName');
   var xpEl = document.getElementById('taskXP');
   var name = nameEl.value.trim();
   var v = parseInt(xpEl.value) || 10;
   if(!name){ toast('请输入任务名'); return; }
+  var picked = taskDateSel;
+  /* 只认未来日期；今天或过去的日期都当作今日任务 */
+  var sched = (picked && picked > todayStr()) ? picked : '';
   pushUndo();
-  state.tasks.push({ id: uid(), name: name, xp: v, coins: v, done: false });
-  log('➕ 添加任务：' + name);
+  state.tasks.push({ id: uid(), name: name, xp: v, coins: v, done: false, prio: '', date: sched, deferCount: 0 });
+  log('➕ 添加任务：' + name + (sched ? '（' + sched + '）' : ''));
   nameEl.value = '';
   save(); render();
+  toast(sched ? '📅 已加入 ' + dateLabel(sched) + ' 的日程' : '已添加到今日任务');
 }function toggleTask(id){
   var t = state.tasks.find(function(x){ return x.id === id; });
   if(!t) return;
@@ -2761,6 +3273,9 @@ function delTask(id){
   if(!t) return;
   pushUndo();
   state.tasks = state.tasks.filter(function(x){ return x.id !== id; });
+  if(taskPrioPicker === id) taskPrioPicker = null;
+  if(editingTaskId === id) editingTaskId = null;
+  log('🗑 删除任务：' + t.name);
   save(); render();
 }function startEditTask(id){ editingTaskId = id; render(); }
 function cancelEditTask(){ editingTaskId = null; render(); }
@@ -3205,35 +3720,128 @@ function render(){
   save();
 }
 
-function renderTasks(){
-  var el = document.getElementById('taskList');
-  if(state.tasks.length === 0){
-    el.innerHTML = '<div class="empty">还没有任务</div>';
+function taskRowHTML(t, inSched){
+  var prio = t.prio || '';
+  var h = '<div class="task' + (t.done ? ' done' : '') + (inSched ? ' sched' : '') + '"' +
+    ' data-row="1" data-kind="task" data-id="' + t.id + '" data-date="' + escapeAttr(t.date || '') + '">';
+
+  h += gripBtn('task', t.id);
+
+  /* 紧急程度标记：点击展开选择器 */
+  h += '<button class="prio-btn p-' + (prio || 'none') + '" onclick="openPrioPicker(\'' + t.id + '\')"' +
+       ' title="紧急程度：' + PRIO_META[prio].label + '（点击修改）" aria-label="紧急程度">' + prioSvg(prio) + '</button>';
+
+  if(inSched){
+    h += '<span class="sched-dot" title="' + escapeAttr(t.date) + '"></span>';
   }else{
-    var html = '';
-    state.tasks.forEach(function(t){
-      if(editingTaskId === t.id){
-        html += '<div class="task" style="border-color:var(--clay);background:var(--clay-soft)">';
-        html += '<input id="et-name-' + t.id + '" class="edit-input" value="' + escapeAttr(t.name) + '" onkeydown="if(event.key===\'Enter\'){event.preventDefault();saveEditTask(\'' + t.id + '\')}">';
-        html += '<input id="et-xp-' + t.id + '" class="edit-num" type="number" min="0" value="' + t.xp + '" title="经验和金币（同值）">';
-        html += '<button class="btn-primary btn-sm" onclick="saveEditTask(\'' + t.id + '\')">存</button>';
-        html += '<button class="btn-ghost btn-sm" onclick="cancelEditTask()">消</button>';
-        html += '</div>';
-      }else{        html += '<div class="task ' + (t.done ? 'done' : '') + '">';
-        html += '<div class="check ' + (t.done ? 'on' : '') + '" onclick="toggleTask(\'' + t.id + '\')">' + (t.done ? '✓' : '') + '</div>';
-        html += '<div class="name">' + escapeHtml(t.name) + '</div>';
-        html += '<span class="tag xp">+' + t.xp + ' XP</span>';
-        html += '<span class="tag coin">🪙 +' + t.coins + '</span>';
-        html += '<button class="btn-ghost btn-sm" onclick="startEditTask(\'' + t.id + '\')">编</button>';
-        html += '<button class="btn-danger btn-sm" onclick="delTask(\'' + t.id + '\')">删</button>';
-        html += '</div>';
-      }
-    });
-    el.innerHTML = html;
+    h += '<div class="check ' + (t.done ? 'on' : '') + '" onclick="toggleTask(\'' + t.id + '\')">' + (t.done ? '✓' : '') + '</div>';
   }
-  var doneCount = state.tasks.filter(function(t){ return t.done; }).length;
+
+  h += '<div class="name">';
+  if(t.deferCount > 0){
+    h += '<span class="flag-wrap" title="已顺延 ' + t.deferCount + ' 次">' + flagSvg() +
+         '<span class="flag-n">' + t.deferCount + '</span></span>';
+  }
+  h += escapeHtml(t.name) + '</div>';
+
+  h += '<span class="tag xp">+' + t.xp + ' XP</span>';
+  h += '<span class="tag coin">🪙 +' + t.coins + '</span>';
+
+  h += '<div class="task-ops">';
+  if(inSched){
+    h += '<button class="op-btn" onclick="bringToToday(\'' + t.id + '\')" title="移到今天做">⤴</button>';
+  }else if(!t.done){
+    h += '<button class="op-btn" onclick="deferTask(\'' + t.id + '\')" title="顺延到明天">⤵</button>';
+  }
+  h += editBtn('startEditTask(\'' + t.id + '\')', '编辑');
+  h += delBtn('delTask(\'' + t.id + '\')', '删除');
+  h += '</div></div>';
+  return h;
+}
+
+/* kind: 'task' | 'checkin' —— 任务与打卡共用同一套优先级选择器 */
+function prioPickerHTML(id, cur, kind){
+  cur = cur || '';
+  var isTask = (kind !== 'checkin');
+  var setFn = isTask ? 'setTaskPrio' : 'setCheckinPrio';
+  var openFn = isTask ? 'openPrioPicker' : 'openCheckinPrioPicker';
+  var opts = [['urgent', '紧急重要'], ['normal', '一般重要'], ['', '无标记']];
+  var h = '<div class="prio-picker"><span class="pp-label">紧急程度</span>';
+  opts.forEach(function(o){
+    h += '<button class="pp-item' + (cur === o[0] ? ' sel' : '') + '" onclick="' + setFn + '(\'' + id + '\',\'' + o[0] + '\')">' +
+         prioSvg(o[0]) + '<span>' + o[1] + '</span></button>';
+  });
+  h += '<button class="pp-close" onclick="' + openFn + '(\'' + id + '\')">收起</button></div>';
+  return h;
+}
+
+function taskEditRowHTML(t){
+  return '<div class="task editing" style="border-color:var(--clay);background:var(--clay-soft)">' +
+    '<input id="et-name-' + t.id + '" class="edit-input" value="' + escapeAttr(t.name) + '" onkeydown="if(event.key===\'Enter\'){event.preventDefault();saveEditTask(\'' + t.id + '\')}">' +
+    '<input id="et-xp-' + t.id + '" class="edit-num" type="number" min="0" value="' + t.xp + '" title="经验和金币（同值）">' +
+    '<button class="btn-primary btn-sm" onclick="saveEditTask(\'' + t.id + '\')">存</button>' +
+    '<button class="btn-ghost btn-sm" onclick="cancelEditTask()">消</button></div>';
+}
+
+function renderSched(future){
+  var wrap = document.getElementById('schedWrap');
+  var listEl = document.getElementById('schedList');
+  var cntEl = document.getElementById('schedCount');
+  if(!wrap || !listEl) return;
+
+  if(future.length === 0){
+    wrap.style.display = 'none';
+    return;
+  }
+  wrap.style.display = '';
+  if(cntEl) cntEl.textContent = future.length;
+
+  /* 按日期分组，组内保持用户排的顺序 */
+  var order = [], map = {};
+  future.forEach(function(t){
+    if(!map[t.date]){ map[t.date] = []; order.push(t.date); }
+    map[t.date].push(t);
+  });
+  order.sort();
+
+  var html = '';
+  order.forEach(function(ds){
+    html += '<div class="sched-group"><div class="sched-date"><span>' + dateLabel(ds) + '</span>' +
+            '<em>' + ds.slice(5) + '</em></div>';
+    map[ds].forEach(function(t){
+      html += (editingTaskId === t.id) ? taskEditRowHTML(t) : taskRowHTML(t, true);
+      if(taskPrioPicker === t.id) html += prioPickerHTML(t.id, t.prio, 'task');
+    });
+    html += '</div>';
+  });
+  listEl.innerHTML = html;
+  listEl.classList.toggle('show', schedOpen);
+  var ar = document.getElementById('schedArrow');
+  if(ar) ar.textContent = schedOpen ? '▾' : '▸';
+}
+
+function renderTasks(){
+  var todayTasks = [], future = [];
+  state.tasks.forEach(function(t){ (isScheduled(t) ? future : todayTasks).push(t); });
+
+  var html = '';
+  if(todayTasks.length === 0){
+    html = '<div class="empty">今天还没有任务</div>';
+  }else{
+    todayTasks.forEach(function(t){
+      html += (editingTaskId === t.id) ? taskEditRowHTML(t) : taskRowHTML(t, false);
+      if(taskPrioPicker === t.id) html += prioPickerHTML(t.id, t.prio, 'task');
+    });
+  }
+  document.getElementById('taskList').innerHTML = html;
+  renderSched(future);
+
+  var doneCount = todayTasks.filter(function(t){ return t.done; }).length;
+  var urgent = todayTasks.filter(function(t){ return t.prio === 'urgent' && !t.done; }).length;
   document.getElementById('taskSummary').textContent =
-    '今日 ' + doneCount + '/' + state.tasks.length + ' · 今日 XP ' + state.stats.todayXP + ' · 本周 ' + state.stats.weekTasksDone;
+    '今日 ' + doneCount + '/' + todayTasks.length +
+    (urgent ? ' · 紧急 ' + urgent : '') +
+    ' · 今日 XP ' + state.stats.todayXP + ' · 本周 ' + state.stats.weekTasksDone;
 }
 
 function renderCheckins(){
@@ -3257,17 +3865,25 @@ function renderCheckins(){
       html += '<button class="btn-primary btn-sm" onclick="saveEditCheckin(\'' + c.id + '\')">存</button>';
       html += '<button class="btn-ghost btn-sm" onclick="cancelEditCheckin()">消</button>';
       html += '</div></div>';
-    }else{      html += '<div class="ck">';
+    }else{
+      html += '<div class="ck" data-row="1" data-kind="checkin" data-id="' + c.id + '" data-date="">';
       html += '<div class="ck-row">';
+      html += gripBtn('checkin', c.id);
+      html += '<button class="prio-btn p-' + (c.prio || 'none') + '" onclick="openCheckinPrioPicker(\'' + c.id + '\')"' +
+              ' title="紧急程度：' + PRIO_META[c.prio || ''].label + '（点击修改）" aria-label="紧急程度">' + prioSvg(c.prio || '') + '</button>';
       html += '<div class="check ' + (todayDone ? 'on' : '') + '" style="width:19px;height:19px;font-size:10px" onclick="toggleCheckin(\'' + c.id + '\',\'' + today + '\')">' + (todayDone ? '✓' : '') + '</div>';
       html += '<div class="ck-name" onmouseenter="hoverCheckin(\'' + c.id + '\')" onmouseleave="unhoverCheckin(\'' + c.id + '\')">' + escapeHtml(c.name) + '</div>';
       html += '<span class="tag xp">+' + c.xp + '</span>';
       html += '<span class="tag coin">🪙+' + c.coins + '</span>';
       html += '<span class="ck-stats">' + total + '天·连' + st + '</span>';
-      html += '<button class="btn-ghost btn-sm btn-icon ' + (pinned ? 'btn-primary' : '') + '" onclick="pinCheckin(\'' + c.id + '\')">📅</button>';
-      html += '<button class="btn-ghost btn-sm" onclick="startEditCheckin(\'' + c.id + '\')">编</button>';
-      html += '<button class="btn-danger btn-sm" onclick="delCheckin(\'' + c.id + '\')">删</button>';
+      html += '<div class="icon-ops">';
+      html += '<button class="op-btn cal" ' + (pinned ? 'style="background:var(--clay-soft);border-color:var(--clay-bg);color:var(--clay-2)"' : '') +
+              ' onclick="pinCheckin(\'' + c.id + '\')" title="展开日历">📅</button>';
+      html += editBtn('startEditCheckin(\'' + c.id + '\')', '编辑');
+      html += delBtn('delCheckin(\'' + c.id + '\')', '删除');
       html += '</div>';
+      html += '</div>';
+      if(checkinPrioPicker === c.id) html += prioPickerHTML(c.id, c.prio, 'checkin');
       html += '<div class="ck-cal ' + (pinned ? 'pinned show' : '') + '" id="cal-' + c.id + '" onmouseenter="hoverCheckin(\'' + c.id + '\')" onmouseleave="unhoverCheckin(\'' + c.id + '\')">' + buildCalendar(c) + '</div>';
       html += '</div>';
     }
@@ -3329,8 +3945,10 @@ function renderMilestones(){
     html += '<div class="ms-head">';
     html += '<div class="ms-title">' + escapeHtml(m.name) + '</div>';
     html += '<span class="ms-progress-big">' + m.progress + '% · ' + (cur ? escapeHtml(cur.label) : '未开始') + '</span>';
-    html += '<button class="btn-ghost btn-sm" onclick="renameMs(\'' + m.id + '\')">改名</button>';
-    html += '<button class="btn-danger btn-sm" onclick="delMilestone(\'' + m.id + '\')">删</button>';
+    html += '<div class="icon-ops">';
+    html += editBtn('renameMs(\'' + m.id + '\')', '改名');
+    html += delBtn('delMilestone(\'' + m.id + '\')', '删除');
+    html += '</div>';
     html += '</div>';
     html += '<div class="ms-bar">';
     html += '<div class="ms-bar-fill" style="width:' + m.progress + '%"></div>';
@@ -3364,9 +3982,9 @@ function renderRewards(){
   state.rewards.forEach(function(r){
     html += '<div class="shop-item">';
     html += '<div class="lbl">🎁 ' + escapeHtml(r.name) + ' <span class="tag coin">🪙 ' + r.cost + '</span></div>';
-    html += '<div style="display:flex;gap:4px">';
+    html += '<div class="icon-ops">';
     html += '<button class="btn-pink btn-sm" onclick="buyReward(\'' + r.id + '\')">兑换</button>';
-    html += '<button class="btn-danger btn-sm" onclick="delReward(\'' + r.id + '\')">删</button>';
+    html += delBtn('delReward(\'' + r.id + '\')', '删除');
     html += '</div>';
     html += '</div>';
   });
@@ -3395,9 +4013,9 @@ function renderChests(){
     html += '<div class="cond">' + chestConditionText(c) + ' · ' + chestProgress(c) + '</div>';
     html += '<div class="rw">' + chestRewardText(c) + '</div>';
     html += '</div>';
-    html += '<div style="display:flex;gap:4px;flex-shrink:0">';
+    html += '<div class="icon-ops">';
     html += btn;
-    html += '<button class="btn-danger btn-sm" onclick="delChest(\'' + c.id + '\')">删</button>';
+    html += delBtn('delChest(\'' + c.id + '\')', '删除');
     html += '</div>';
     html += '</div>';
   });
@@ -3416,8 +4034,10 @@ function renderSurprises(){
       html += '<div class="sname">' + escapeHtml(s.name) + '</div>';
       html += '<span class="sw">' + s.weight + ' 点</span>';
       html += '<span class="sp">' + s.prob.toFixed(1) + '%</span>';
-      html += '<button class="btn-ghost btn-sm" onclick="editSurprise(\'' + s.id + '\')">编</button>';
-      html += '<button class="btn-danger btn-sm" onclick="delSurprise(\'' + s.id + '\')">删</button>';
+      html += '<div class="icon-ops">';
+      html += editBtn('editSurprise(\'' + s.id + '\')', '编辑');
+      html += delBtn('delSurprise(\'' + s.id + '\')', '删除');
+      html += '</div>';
       html += '</div>';
     });
     el.innerHTML = html;
@@ -3544,9 +4164,11 @@ function sumLastDay(rec){
 function summaryData(){
   var today = todayStr();
   var st = state.stats || {};
-  var doneTasks = state.tasks.filter(function(t){ return t.done; });
-  var undoneTasks = state.tasks.filter(function(t){ return !t.done; });
-  var total = state.tasks.length;
+  /* 只统计今日任务：后续日程还没到日子，不该算进今天的完成率 */
+  var todayList = state.tasks.filter(function(t){ return !isScheduled(t); });
+  var doneTasks = todayList.filter(function(t){ return t.done; });
+  var undoneTasks = todayList.filter(function(t){ return !t.done; });
+  var total = todayList.length;
   var rate = total ? Math.round(doneTasks.length / total * 100) : 0;
   var todayXP = st.todayXP || 0;
   var todayCheckins = state.checkins.filter(function(c){ return c.records && c.records[today]; }).length;
@@ -3607,8 +4229,8 @@ function summaryData(){
   Object.keys(tHist).forEach(function(k){ tHist[k].dayCount = Object.keys(tHist[k].days).length; });
   var activeDayCount = Object.keys(activeDays).length || 1;
 
-  /* 当前清单里每一项的历史表现 */
-  var taskPerf = state.tasks.map(function(t){
+  /* 当前清单里每一项的历史表现（后续日程尚未到期，不参与"被反复跳过"的判断） */
+  var taskPerf = todayList.map(function(t){
     var h = tHist[t.name];
     var added = addedAt[t.name] || null;
     return {
@@ -3649,6 +4271,15 @@ function summaryData(){
   var heavy = todayDone.length ? todayDone.reduce(function(a, b){ return b.xp > a.xp ? b : a; }) : null;
   var heavyPos = heavy ? todayDone.indexOf(heavy) + 1 : 0;
 
+  /* 顺延：拖得最久的那一项（顺延后回到今天的任务也算） */
+  var deferredList = todayList.filter(function(t){ return (t.deferCount || 0) > 0; })
+    .sort(function(a, b){ return (b.deferCount || 0) - (a.deferCount || 0); });
+  var deferredTop = deferredList.length
+    ? { name: deferredList[0].name, count: deferredList[0].deferCount || 0, done: !!deferredList[0].done }
+    : null;
+  var deferTotal = deferredList.reduce(function(a, t){ return a + (t.deferCount || 0); }, 0);
+  var schedCount = state.tasks.filter(function(t){ return isScheduled(t); }).length;
+
   return {
     today: today, hour: new Date().getHours(),
     doneTasks: doneTasks, undoneTasks: undoneTasks, total: total, rate: rate,
@@ -3659,7 +4290,9 @@ function summaryData(){
     rhythmToday: rhythmToday, rhythmHist: rhythmHist,
     activeDayCount: activeDayCount, todayPer: todayPer, yPer: yPer,
     trend3: t3, trendPrev4: p4, trendDelta: trendDelta, ck: ck,
-    milestones: state.milestones || []
+    milestones: state.milestones || [],
+    /* 顺延数据：拖得最久的那一项 + 被拖延的总次数 */
+    deferred: deferredTop, deferTotal: deferTotal, schedCount: schedCount
   };
 }
 
@@ -3772,6 +4405,19 @@ function summaryInsights(d){
           act:'明天只写 3 件，做完再加。剩下的放到"备选"，而不是"今天"。' });
       }
     }
+  }
+
+  /* 9. 有一项被反复顺延 */
+  if(d.deferred && d.deferred.count >= 2){
+    add({ tone:'warn', icon:'🚩', about:'defer:' + d.deferred.name,
+      title:'有一项你拖了 ' + d.deferred.count + ' 次',
+      body:'<b>' + esc(d.deferred.name) + '</b> 已经被顺延 <b>' + d.deferred.count + '</b> 次' +
+        (d.deferred.done
+          ? '，今天终于做掉了 —— 说明它其实没那么难，真正卡住的是"开始"那一下。'
+          : '，到现在还没动。连续顺延通常不是没时间，而是不想做、或者不知道从哪下手 —— 时间不会自己长出来。'),
+      act: d.deferred.done
+        ? '留意一下今天是怎么把它启动起来的，下次照做。'
+        : '要么把它砍到 5 分钟能做完的版本，要么诚实删掉。一直挂着会持续占用你的注意力。' });
   }
 
   /* 去重（同一件事只说一次）+ 按严重程度排序：risk > warn > good */
@@ -4849,6 +5495,7 @@ function decoPurgeRemoved(){
 decoPurgeRemoved();
 applyDeco();
 renderDecoUI();
+syncDateChip();
 boot();
 </script>
 </body>
